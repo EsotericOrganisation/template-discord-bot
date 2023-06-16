@@ -59,12 +59,7 @@ const no = [
 
 const responseArray = [...yes, ...maybe, ...no];
 
-const responseMap = [
-	{question: "Is Slime Bot the best bot?", answer: 0},
-	{question: "Is Elwin an NPC?", answer: 0},
-	{question: "What happened on October 13th?", answer: 0},
-	{question: "Is Elwin a good pilot?", answer: 0},
-];
+const responseMap = [{question: "Is Slime Bot the best bot?", answer: 0}];
 
 export const command: Command = {
 	data: new SlashCommandBuilder()

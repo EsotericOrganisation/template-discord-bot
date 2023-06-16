@@ -57,11 +57,11 @@ const no = [
 ];
 const responseArray = [...yes, ...maybe, ...no];
 
-const posArr = ["Is Slime Bot the best bot?", "Is Elwin an NPC?"];
+const posArr = ["Is Slime Bot the best bot?"];
 
-const neutralArr = ["What happened on October 13th?"];
+const neutralArr = [];
 
-const negativeArr = ["Is Elwin a good pilot?"];
+const negativeArr = [];
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -127,7 +127,7 @@ module.exports = {
 			if (!rand) {
 				rand = Math.floor(Math.random() * responseArray.length);
 				const tem = new temp({
-					_id: mongoose.Types.ObjectId(),
+					_id: new mongoose.Types.ObjectId(),
 					type: "8ball",
 					lifeSpan: 86400,
 					data: {
