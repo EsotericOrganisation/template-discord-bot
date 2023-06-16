@@ -1,20 +1,20 @@
-import {PermissionsBitField, ChannelType, EmbedBuilder} from "discord.js";
+import {ChannelType, EmbedBuilder, PermissionsBitField} from "discord.js";
 import {
-	SuccessMessageBuilder,
-	ErrorMessageBuilder,
 	EmbedFileMessageBuilder,
+	ErrorMessageBuilder,
+	SuccessMessageBuilder,
 } from "../../../classes.js";
-import {sleep, isValidURL} from "../../../functions.js";
-import embedSchema from "../../../schemas/embedSchema.js";
-import settings from "../../../schemas/settings.js";
-import fs from "fs";
-import temp from "../../../schemas/temp.js";
+import {isValidURL, sleep} from "../../../functions.js";
 import chalk from "chalk";
+import embedSchema from "../../../schemas/embedSchema.js";
+import fs from "fs";
+import settings from "../../../schemas/settings.js";
+import temp from "../../../schemas/temp.js";
 
 export default {
 	name: "messageCreate",
 	async execute(message, client) {
-		if (message.content === "Goodnight, <@880368773960437840>!") {
+		if (message.content === `Goodnight, <@${process.env.clientID}>!`) {
 			await sleep(600);
 			await message.reply({content: "x²"});
 			await sleep(600);
@@ -56,7 +56,7 @@ export default {
 			}
 
 			if (linkMSG.files.length) {
-				await client.users.fetch("880368773960437840").then(
+				await client.users.fetch(`${process.env.clientID}`).then(
 					async (user) =>
 						(linkMSG = await user.send({
 							content: "⚙ Adding Files...",
@@ -97,7 +97,7 @@ export default {
 						msg.edit(new EmbedFileMessageBuilder(embedProfile, null, client)),
 					);
 
-				return await message.reply(
+				return message.reply(
 					new SuccessMessageBuilder(
 						`Successfully added ${
 							attachments.length === 1
@@ -107,7 +107,7 @@ export default {
 					),
 				);
 			}
-			return await message.reply(
+			return message.reply(
 				new ErrorMessageBuilder(
 					"Please upload a message containing valid files!",
 				),

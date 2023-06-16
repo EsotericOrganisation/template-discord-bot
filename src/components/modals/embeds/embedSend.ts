@@ -73,45 +73,43 @@ export default {
 			} else if (!botPerms?.includes("ViewChannel")) {
 				await interaction.editReply(
 					new ErrorMessageBuilder(
-						"<@880368773960437840> does not have access to this channel!",
+						`<@${process.env.clientID}> does not have access to this channel!`,
 					),
 				);
+			} else if (!botPerms?.includes("SendMessages")) {
+				await interaction.editReply(
+					new ErrorMessageBuilder(
+						`<@${process.env.clientID}> does not have the \`Send Messages\` permission in this channel!`,
+					),
+				);
+			} else if (!botPerms?.includes("EmbedLinks")) {
+				await interaction.editReply(
+					new ErrorMessageBuilder(
+						`<@${process.env.clientID}> does not have the \`Embed Links\` permission in this channel!`,
+					),
+				);
+			} else if (
+				!embedProfile.content &&
+				!embedProfile.embeds.length &&
+				!embedProfile.files.length &&
+				!embedProfile.components.length
+			) {
+				interaction.editReply(
+					new ErrorMessageBuilder("Can not send an empty message!"),
+				);
 			} else {
-				if (!botPerms?.includes("SendMessages")) {
-					await interaction.editReply(
-						new ErrorMessageBuilder(
-							"<@880368773960437840> does not have the `Send Messages` permission in this channel!",
-						),
-					);
-				} else if (!botPerms?.includes("EmbedLinks")) {
-					await interaction.editReply(
-						new ErrorMessageBuilder(
-							"<@880368773960437840> does not have the `Embed Links` permission in this channel!",
-						),
-					);
-				} else if (
-					!embedProfile.content &&
-					!embedProfile.embeds.length &&
-					!embedProfile.files.length &&
-					!embedProfile.components.length
-				) {
-					interaction.editReply(
-						new ErrorMessageBuilder("Can not send an empty message!"),
-					);
-				} else {
-					await sendChannel.send({
-						content: embedProfile.content,
-						embeds: embedProfile.embeds,
-						files: embedProfile.files.map((e) => e.link),
-						components: embedProfile.components,
-					});
+				await sendChannel.send({
+					content: embedProfile.content,
+					embeds: embedProfile.embeds,
+					files: embedProfile.files.map((e) => e.link),
+					components: embedProfile.components,
+				});
 
-					await interaction.editReply(
-						new SuccessMessageBuilder(
-							`Embed successfully sent in channel ${sendChannel}`,
-						),
-					);
-				}
+				await interaction.editReply(
+					new SuccessMessageBuilder(
+						`Embed successfully sent in channel ${sendChannel}`,
+					),
+				);
 			}
 		}
 	},

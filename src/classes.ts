@@ -1009,13 +1009,15 @@ class CommandCategoriesMessageBuilder {
 	constructor(interaction, client: Client) {
 		const botData = JSON.parse(readFileSync("./data/bot.json").toString());
 
-		let description = `This is a list of command categories for <@880368773960437840>. Select a category in the select menu below to view individual commands.\n\nThere are currently **\`${
+		let description = `This is a list of command categories for <@${
+			process.env.clientID
+		}>. Select a category in the select menu below to view individual commands.\n\nThere are currently **\`${
 			commandCategories.length
 		}\`** command categories and **\`${commandCategories
 			.map(
 				(category) =>
 					readdirSync(
-						`./src/commands/${category.match(/\w+$/)[0].toLowerCase()}`,
+						`./src/commands/${/\w+$/.exec(category)[0].toLowerCase()}`,
 					).length,
 			)
 			.reduce((a, e) => a + e, 0)}\`** total commands.\n`;
@@ -1692,7 +1694,7 @@ class HelpMessageBuilder {
 				.setDescription(
 					`> The prefixes for this server are \`/\`, ${serverSettings.settings.prefixes
 						.map((prefix) => {
-							return prefix === "<@880368773960437840>"
+							return prefix === `<@${process.env.clientID}>`
 								? prefix
 								: `\`${prefix}\``;
 						})

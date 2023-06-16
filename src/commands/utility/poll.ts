@@ -241,7 +241,7 @@ export const command: Command = {
 				(await client.channels.fetch(input[5]).messages.fetch(input[6]));
 
 			switch (message.author.id) {
-				case "880368773960437840": // Slime Bot
+				case process.env.clientID: // Slime Bot
 					break;
 				case "155149108183695360": // Dyno
 					break;

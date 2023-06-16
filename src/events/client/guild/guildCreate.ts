@@ -4,14 +4,14 @@ import settings from "../../../schemas/settings.js";
 export default {
 	name: "guildCreate",
 	async execute(event) {
-		const settingsData = await settings.findOne({server: event.id});
+		let settingsData = await settings.findOne({server: event.id});
 
 		if (!settingsData) {
-			const settingsData = new settings({
+			settingsData = new settings({
 				_id: new mongoose.Types.ObjectId(),
 				server: event.id,
 				settings: {
-					prefixes: ["?", "<@880368773960437840>"],
+					prefixes: ["?", `<@${process.env.clientID}>`],
 					ignoreChannels: [],
 					ignoreChannelsInvert: false,
 					ignoreRoles: [],
@@ -37,8 +37,7 @@ export default {
 					array: [
 						{
 							nickname: "🌳 Slime Bot",
-							iconURL:
-								"https://cdn.discordapp.com/avatars/880368773960437840/b2248219efe2ac802d1af124b7d1a887.webp?size=4096",
+							iconURL: `https://cdn.discordapp.com/avatars/${process.env.clientID}/b2248219efe2ac802d1af124b7d1a887.webp?size=4096`,
 							status: "online",
 							activityType: "",
 							activityText: "",
