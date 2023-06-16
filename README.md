@@ -8,7 +8,7 @@ This version of Slime Bot contains _many_ bugs and issues. If you are planning o
 
 This version also has many unfinished features.
 
-There is a [better version of Slime Bot](https://github.com/Slqmy/Slime-Bot) now, which doesn't have so many bugs, and the code is much better. This version is maintained and actually used by me.
+There is a [better version of Slime Bot](https://github.com/Slqmy/Slime-Bot) now, which doesn't have so many bugs, and the code is much better. That version is maintained and actually used by me.
 
 Again, this repository is purely for **historical purposes**.
 
