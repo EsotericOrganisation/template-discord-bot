@@ -1,13 +1,13 @@
 // ! Command disabled because apparently it costs money.
 import {
-	SlashCommandBuilder,
-	EmbedBuilder,
 	ChatInputCommandInteraction,
 	Client,
+	EmbedBuilder,
+	SlashCommandBuilder,
 } from "discord.js";
+import {Command} from "../../types";
 import {ErrorMessageBuilder} from "../../classes.js";
 import {generateText} from "../../functions.js";
-import {Command} from "../../types";
 
 export const ask: Command = {
 	data: new SlashCommandBuilder()
