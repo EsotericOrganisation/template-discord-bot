@@ -16,5 +16,8 @@
     "purpose"
   ],
   "author": "Slqmy",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  }
 }
