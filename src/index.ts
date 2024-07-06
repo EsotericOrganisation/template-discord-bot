@@ -4,8 +4,8 @@ import { BotConfiguration } from "./types/BotConfiguration";
 
 const config = configFile as BotConfiguration;
 
-const { discordBotToken } = config
+const { discordBotToken } = config;
 
 const slimeBot = new SlimeBot(discordBotToken);
 
-slimeBot.login();
+slimeBot.run();
