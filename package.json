@@ -1,0 +1,20 @@
+{
+  "name": "slime-bot-ultimate",
+  "version": "1.0.0",
+  "description": "A general purpose Discord bot. The third version of Slime Bot.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "node ."
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "slime",
+    "ultimate",
+    "v3",
+    "general",
+    "purpose"
+  ],
+  "author": "Slqmy",
+  "license": "ISC"
+}
