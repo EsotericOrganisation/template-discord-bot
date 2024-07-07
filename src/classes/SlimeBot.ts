@@ -12,10 +12,14 @@ import chalk from "chalk";
 
 export class SlimeBot extends Client {
 
-    botToken: string;
+    readonly botToken: string;
 
-    commandArray: RESTPostAPIApplicationCommandsJSONBody[] = [];
-    commands: Collection<string, Command> = new Collection();
+    readonly commandArray: RESTPostAPIApplicationCommandsJSONBody[] = [];
+    readonly commands: Collection<string, Command> = new Collection();
+
+    readonly buttons: Collection<string, Button> = new Collection();
+    readonly menus: Collection<string, Menu> = new Collection();
+    readonly modals: Collection<string, Modal> = new Collection();
 
     constructor(botToken: string) {
         super({ intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMembers] });
