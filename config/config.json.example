@@ -1,4 +1,5 @@
 {
     "discordBotToken": "abc123",
-    "discordBotClientID": "456"
+    "discordBotClientID": "456",
+    "adminDiscordUserIDs": ["500690028960284672"]
 }

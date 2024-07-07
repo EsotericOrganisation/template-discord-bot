@@ -9,12 +9,15 @@ import { ProcessEvent } from "../types/events/ProcessEvent.js";
 import { commandsFolderName, restVersion, commandsFolderPath, eventsFolderPath, eventsFolderName, componentsFolderPath, pathSeparator, processEventsFolderName, clientEventsFolderName, buttonsFolderName, menusFolderName, modalsFolderName, ascendDirectoryString, commandPrefix, componentsFolderName } from "../constants.js";
 import { LanguageManager } from "./LanguageManager.js";
 import { DataManager } from "./DataManager.js";
+import { DiscordUserID } from "../types/DiscordUserID.js";
 
 import chalk from "chalk";
 
 export class SlimeBot extends Client {
 
     readonly botToken: string;
+
+    readonly adminDiscordUserIDs: DiscordUserID[] = [];
 
     readonly commandArray: RESTPostAPIApplicationCommandsJSONBody[] = [];
     readonly commands: Collection<string, Command> = new Collection();
@@ -26,10 +29,14 @@ export class SlimeBot extends Client {
     readonly dataManager: DataManager;
     readonly languageManager: LanguageManager;
 
-    constructor(botToken: string) {
+    constructor(botToken: string, botAdminDiscordUserIDs?: DiscordUserID[]) {
         super({ intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMembers] });
 
         this.botToken = botToken;
+
+        if (botAdminDiscordUserIDs) {
+            this.adminDiscordUserIDs = botAdminDiscordUserIDs;
+        }
 
         this.dataManager = new DataManager();
         this.languageManager = new LanguageManager(this);

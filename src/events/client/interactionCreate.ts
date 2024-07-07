@@ -1,5 +1,6 @@
 import { ChatInputCommandInteraction, ButtonInteraction, ModalSubmitInteraction } from "discord.js";
 import { DiscordClientEvent } from "../../types/events/DiscordClientEvent.js";
+import { DiscordUserID } from "../../types/DiscordUserID.js";
 
 export default {
 	name: "interactionCreate",
@@ -9,6 +10,14 @@ export default {
 			const { commandName } = interaction;
 
 			const command = commands.get(commandName);
+
+			if (command.isBotAdminOnly) {
+				const botAdminDiscordUserIDs = bot.adminDiscordUserIDs;
+
+				if (!botAdminDiscordUserIDs.includes(interaction.user.id as DiscordUserID)) {
+					return;
+				}
+			}
 
 			await command.execute(interaction, bot);
 		} else if (interaction instanceof ButtonInteraction) {
