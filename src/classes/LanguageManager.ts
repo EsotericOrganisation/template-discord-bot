@@ -38,23 +38,23 @@ export class LanguageManager {
         }
     }
 
-    getMessageByLanguage(message: Message, language: Language, ...parameters: string[]) {
+    getMessageByLanguage(message: Message, language: Language, ...parameters: any[]) {
         const languageData = this.languageDataMap.get(language) ?? this.languageDataMap.get(Language.DefaultLanguage);
 
         let messageString = languageData.messages[message];
 
         for (let i = 0; i < parameters.length; i++) {
-            messageString = messageString.replaceAll("{" + i + "}", parameters[i]);
+            messageString = messageString.replaceAll("{" + i + "}", parameters[i].toString());
         }
 
         return messageString;
     }
 
-    getMessageByUserData(message: Message, userData: UserData, ...parameters: string[]) {
+    getMessageByUserData(message: Message, userData: UserData, ...parameters: any[]) {
         return this.getMessageByLanguage(message, userData?.userConfiguartion?.language ?? Language.DefaultLanguage, ...parameters);
     }
 
-    getMessageByDiscordUserID(message: Message, userID: DiscordUserID, ...parameters: string[]) {
+    getMessageByDiscordUserID(message: Message, userID: DiscordUserID, ...parameters: any[]) {
         const dataManager = this.bot.dataManager;
 
         const userData = dataManager.getUserData(userID);
@@ -62,7 +62,7 @@ export class LanguageManager {
         return this.getMessageByUserData(message, userData, ...parameters);
     }
 
-    getMessageByDiscordUser(message: Message, user: User, ...parameters: string[]) {
+    getMessageByDiscordUser(message: Message, user: User, ...parameters: any[]) {
         return this.getMessageByDiscordUserID(message, user.id as DiscordUserID, ...parameters);
     }
 }
