@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
-import { DiscordUserID } from "../types/DiscordUserID.js";
+import { DiscordUserID } from "../types/user/DiscordUserID.js";
 import { UserData } from "./UserData.js";
 import { dataFolderPath, pathSeparator, userDataFolderPath } from "../constants.js";
 

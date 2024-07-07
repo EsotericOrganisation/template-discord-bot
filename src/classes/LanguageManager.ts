@@ -1,11 +1,11 @@
-import { Language } from "../enums/Language.js";
-import { LanguageInformation } from "../types/LanguageInformation.js";
+import { Language } from "../enums/language/Language.js";
+import { LanguageInformation } from "../types/language/LanguageInformation.js";
 import { readdirSync, readFileSync } from "fs";
 import { languagesFolderPath, pathSeparator } from "../constants.js";
-import { MessageMap } from "../types/MessageMap.js";
-import { LanguageManifest } from "../types/LanguageManifest.js";
-import { Message } from "../enums/Message.js";
-import { DiscordUserID } from "../types/DiscordUserID.js";
+import { MessageMap } from "../types/language/MessageMap.js";
+import { LanguageManifest } from "../types/language/LanguageManifest.js";
+import { Message } from "../enums/language/Message.js";
+import { DiscordUserID } from "../types/user/DiscordUserID.js";
 import { SlimeBot } from "./SlimeBot.js";
 import { User } from "discord.js";
 import { UserData } from "./UserData.js";

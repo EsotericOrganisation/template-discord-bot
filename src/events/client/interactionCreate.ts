@@ -1,6 +1,6 @@
 import { ChatInputCommandInteraction, ButtonInteraction, ModalSubmitInteraction } from "discord.js";
 import { DiscordClientEvent } from "../../types/events/DiscordClientEvent.js";
-import { DiscordUserID } from "../../types/DiscordUserID.js";
+import { DiscordUserID } from "../../types/user/DiscordUserID.js";
 
 export default {
 	name: "interactionCreate",

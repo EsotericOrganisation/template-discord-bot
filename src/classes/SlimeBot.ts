@@ -1,6 +1,6 @@
 import { Client, Collection, IntentsBitField, REST, RESTPostAPIApplicationCommandsJSONBody, Routes } from "discord.js";
 import { readdirSync } from "fs";
-import { Command } from "../types/Command.js";
+import { Command } from "../types/commands/Command.js";
 import { Button } from "../types/components/Button.js";
 import { Menu } from "../types/components/Menu.js";
 import { Modal } from "../types/components/Modal.js";
@@ -9,8 +9,8 @@ import { ProcessEvent } from "../types/events/ProcessEvent.js";
 import { commandsFolderName, restVersion, commandsFolderPath, eventsFolderPath, eventsFolderName, componentsFolderPath, pathSeparator, processEventsFolderName, clientEventsFolderName, buttonsFolderName, menusFolderName, modalsFolderName, ascendDirectoryString, commandPrefix, componentsFolderName } from "../constants.js";
 import { LanguageManager } from "./LanguageManager.js";
 import { DataManager } from "./DataManager.js";
-import { DiscordUserID } from "../types/DiscordUserID.js";
-import { BotConfiguration } from "../types/BotConfiguration.js";
+import { DiscordUserID } from "../types/user/DiscordUserID.js";
+import { BotConfiguration } from "../types/bot/BotConfiguration.js";
 
 import chalk from "chalk";
 
