@@ -136,9 +136,9 @@ export class SlimeBot extends Client {
                     break;
                 case menusFolderName:
                     for (const file of componentType) {
-                        const button: Button = (await import(relativeComponentFolderPath + pathSeparator + menusFolderName + pathSeparator + file)).default as Button;
+                        const menu = (await import(relativeComponentFolderPath + pathSeparator + menusFolderName + pathSeparator + file)).default as Menu;
 
-                        this.buttons.set(button.id, button);
+                        this.menus.set(menu.id, menu);
                     }
 
                     break;
