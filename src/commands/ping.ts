@@ -1,5 +1,6 @@
-import { inlineCode, SlashCommandBuilder } from "discord.js";
+import { SlashCommandBuilder } from "discord.js";
 import { Command } from "../types/Command.js";
+import { Message } from "../enums/Message.js";
 
 export default {
     data: new SlashCommandBuilder()
@@ -15,8 +16,10 @@ export default {
 
         const totalPing = bot.ws.ping + messageCreationPing;
 
+        const languageManager = bot.languageManager;
+
         interaction.editReply({
-            content: `Pong! Latency: ${inlineCode(totalPing.toString())}`
+            content: languageManager.getMessageByDiscordUser(Message.Ping, interaction.user, totalPing.toString())
         });
     },
 } as Command
