@@ -1,3 +1,3 @@
-enum Message {
+export enum Message {
     Ping = "ping"
 }
