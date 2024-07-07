@@ -20,12 +20,12 @@ export class SlimeBot extends Client {
 
     adminDiscordUserIDs: DiscordUserID[] = [];
 
-    readonly commandArray: RESTPostAPIApplicationCommandsJSONBody[] = [];
-    readonly commands: Collection<string, Command> = new Collection();
+    commandArray: RESTPostAPIApplicationCommandsJSONBody[];
+    commands: Collection<string, Command>;
 
-    readonly buttons: Collection<string, Button> = new Collection();
-    readonly menus: Collection<string, Menu> = new Collection();
-    readonly modals: Collection<string, Modal> = new Collection();
+    buttons: Collection<string, Button>;
+    menus: Collection<string, Menu>;
+    modals: Collection<string, Modal>;
 
     readonly dataManager: DataManager;
     readonly languageManager: LanguageManager;
@@ -58,12 +58,18 @@ export class SlimeBot extends Client {
     async run() {
         await this.login(this.botToken);
 
+        await this.runHandlers();
+    }
+
+    async runHandlers() {
         await this.handleEvents();
         await this.handleCommands();
         await this.handleComponents();
     }
 
     async handleEvents() {
+        this.removeAllListeners();
+
         const eventFolder = readdirSync(eventsFolderPath);
 
         for (const eventSubfolder of eventFolder) {
@@ -99,6 +105,9 @@ export class SlimeBot extends Client {
     }
 
     async handleCommands() {
+        this.commandArray = [];
+        this.commands = new Collection();
+
         const commandFiles = readdirSync(commandsFolderPath);
 
         for (const file of commandFiles) {
@@ -118,6 +127,10 @@ export class SlimeBot extends Client {
     };
 
     async handleComponents() {
+        this.buttons = new Collection();
+        this.menus = new Collection();
+        this.modals = new Collection();
+
         const componentFolder = readdirSync(componentsFolderPath);
 
         for (const componentTypeFolder of componentFolder) {
@@ -152,5 +165,17 @@ export class SlimeBot extends Client {
                     break;
             }
         }
+    }
+
+    async reload() {
+        this.loadConfig();
+        await this.runHandlers();
+
+        const {languageManager, dataManager} = this;
+
+        languageManager.loadLanguages();
+
+        dataManager.save();
+        dataManager.load();
     }
 }
