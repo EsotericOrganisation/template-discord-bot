@@ -1,7 +1,7 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
-import { SlimeBot } from "../classes/SlimeBot";
+import { SlimeBot } from "../classes/SlimeBot.js";
 
 export type Command = {
-	data: SlashCommandBuilder;
-	execute(interaction: ChatInputCommandInteraction, bot: SlimeBot): Promise<void>;
+	readonly data: SlashCommandBuilder;
+	execute(interaction: ChatInputCommandInteraction, bot?: SlimeBot): Promise<void>;
 };
