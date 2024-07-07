@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from "discord.js";
+import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import { Command } from "../types/Command.js";
 import { Message } from "../enums/Message.js";
 
@@ -12,14 +12,18 @@ export default {
             ephemeral: true
         });
 
-        const messageCreationPing = message.createdTimestamp - interaction.createdTimestamp;
+        const messageCreationLatency = message.createdTimestamp - interaction.createdTimestamp;
 
-        const totalPing = bot.ws.ping + messageCreationPing;
+        const totalPing = bot.ws.ping + messageCreationLatency;
 
         const languageManager = bot.languageManager;
 
         interaction.editReply({
-            content: languageManager.getMessageByDiscordUser(Message.Ping, interaction.user, totalPing.toString())
+            embeds: [
+                new EmbedBuilder()
+                    .setTitle(languageManager.getMessageByDiscordUser(Message.Ping, interaction.user))
+                    .setDescription(languageManager.getMessageByDiscordUser(Message.PingResult, interaction.user, interaction.createdTimestamp, message.createdTimestamp, messageCreationLatency, bot.ws.ping, totalPing))
+            ],
         });
     },
 } as Command

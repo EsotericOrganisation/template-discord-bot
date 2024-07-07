@@ -1,3 +1,4 @@
 export enum Message {
-    Ping = "ping"
+    Ping = "ping",
+    PingResult = "pingResult"
 }
