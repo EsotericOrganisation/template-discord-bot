@@ -7,6 +7,8 @@ import { Modal } from "../types/components/Modal.js";
 import { DiscordClientEvent } from "../types/events/DiscordClientEvent.js";
 import { ProcessEvent } from "../types/events/ProcessEvent.js";
 import { commandsFolderName, restVersion, commandsFolderPath, eventsFolderPath, eventsFolderName, componentsFolderPath, pathSeparator, processEventsFolderName, clientEventsFolderName, buttonsFolderName, menusFolderName, modalsFolderName, ascendDirectoryString, commandPrefix, componentsFolderName } from "../constants.js";
+import { LanguageManager } from "./LanguageManager.js";
+import { DataManager } from "./DataManager.js";
 
 import chalk from "chalk";
 
@@ -21,10 +23,18 @@ export class SlimeBot extends Client {
     readonly menus: Collection<string, Menu> = new Collection();
     readonly modals: Collection<string, Modal> = new Collection();
 
+    readonly dataManager: DataManager;
+    readonly languageManager: LanguageManager;
+
     constructor(botToken: string) {
         super({ intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMembers] });
 
         this.botToken = botToken;
+
+        this.dataManager = new DataManager();
+        this.languageManager = new LanguageManager(this);
+
+        this.dataManager.load();
     }
 
     async run() {
