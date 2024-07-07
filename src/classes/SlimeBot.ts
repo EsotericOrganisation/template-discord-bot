@@ -30,21 +30,99 @@ export class SlimeBot extends Client {
     async run() {
         await this.login(this.botToken);
 
+        await this.handleEvents();
         await this.handleCommands();
+        await this.handleComponents();
+    }
+
+    async handleEvents() {
+        const eventFolder = readdirSync(eventsFolderPath);
+
+        for (const eventSubfolder of eventFolder) {
+            const eventFiles = readdirSync(eventsFolderPath + pathSeparator + eventSubfolder);
+
+            switch (eventSubfolder) {
+                case clientEventsFolderName:
+                    for (const eventFile of eventFiles) {
+                        const event = (await import(ascendDirectoryString + pathSeparator + eventsFolderName + pathSeparator + eventSubfolder + pathSeparator + eventFile)).default as DiscordClientEvent;
+
+                        if (event.once) {
+                            this.once(event.name, async (...args) => await event.execute(this, ...args));
+                        } else {
+                            this.on(event.name, async (...args) => await event.execute(this, ...args));
+                        }
+                    }
+
+                    break;
+                case processEventsFolderName:
+                    for (const eventFile of eventFiles) {
+                        const event = (await import(ascendDirectoryString + pathSeparator + eventsFolderName + pathSeparator + eventSubfolder + pathSeparator + eventFile)).default as ProcessEvent;
+
+                        if (event.once) {
+                            process.once(event.name, (...args) => event.execute(this, ...args));
+                        } else {
+                            process.on(event.name, async (...args) => await event.execute(this, ...args));
+                        }
+                    }
+
+                    break;
+            }
+        }
     }
 
     async handleCommands() {
-        const commandFolder = readdirSync("./dist/commands");
+        const commandFiles = readdirSync(commandsFolderPath);
 
-        for (const file of commandFolder) {
-            const command = (await import(`../commands/${file}`)).default.default as Command;
+        for (const file of commandFiles) {
+            const command = (await import(ascendDirectoryString + pathSeparator + commandsFolderName + pathSeparator + file)).default as Command;
+
+            console.log("Handling command " + chalk.bold(commandPrefix + command.data.name) + ".");
 
             this.commandArray.push(command.data.toJSON());
             this.commands.set(command.data.name, command);
         }
 
-        await new REST({ version: "10" })
+        await new REST({ version: restVersion })
             .setToken(this.botToken)
             .put(Routes.applicationCommands(this.user.id), { body: this.commandArray, });
+
+        console.log(chalk.greenBright("Successfully handled " + chalk.bold(this.commandArray.length) + " command(s)."))
     };
+
+    async handleComponents() {
+        const componentFolder = readdirSync(componentsFolderPath);
+
+        for (const componentTypeFolder of componentFolder) {
+            const componentType = readdirSync(componentsFolderPath + pathSeparator + componentTypeFolder);
+
+            const relativeComponentFolderPath = ascendDirectoryString + pathSeparator + componentsFolderName;
+
+            switch (componentTypeFolder) {
+                case buttonsFolderName:
+                    for (const file of componentType) {
+                        const button: Button = (await import(relativeComponentFolderPath + pathSeparator + buttonsFolderName + pathSeparator + file)).default as Button;
+
+                        this.buttons.set(button.id, button);
+                    }
+
+                    break;
+                case menusFolderName:
+                    for (const file of componentType) {
+                        const button: Button = (await import(relativeComponentFolderPath + pathSeparator + menusFolderName + pathSeparator + file)).default as Button;
+
+                        this.buttons.set(button.id, button);
+                    }
+
+                    break;
+                case modalsFolderName:
+                    for (const file of componentType) {
+                        const modal: Modal = (await import(relativeComponentFolderPath + pathSeparator + modalsFolderName + pathSeparator + file)).default as Modal;
+
+                        this.modals.set(modal.id, modal);
+                    }
+
+                    break;
+            }
+        }
+    }
 }
