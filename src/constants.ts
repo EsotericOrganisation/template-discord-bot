@@ -7,6 +7,15 @@ export const restVersion = "10";
 
 export const commandPrefix = "/";
 
+export const dataFolderName = "data";
+export const dataFolderPath = dataFolderName;
+
+export const userDataFolderName = "users";
+export const userDataFolderPath = dataFolderName + pathSeparator + userDataFolderName;
+
+export const languagesFolderName = "languages";
+export const languagesFolderPath = languagesFolderName;
+
 export const defaultDistributableFolderPath = "dist";
 export const distributableFolderPath = tsConfigFile.compilerOptions.outDir ?? defaultDistributableFolderPath;
 
