@@ -1,6 +1,14 @@
 import { Client, Collection, IntentsBitField, REST, RESTPostAPIApplicationCommandsJSONBody, Routes } from "discord.js";
 import { readdirSync } from "fs";
-import { Command } from "../types/Command";
+import { Command } from "../types/Command.js";
+import { Button } from "../types/components/Button.js";
+import { Menu } from "../types/components/Menu.js";
+import { Modal } from "../types/components/Modal.js";
+import { DiscordClientEvent } from "../types/events/DiscordClientEvent.js";
+import { ProcessEvent } from "../types/events/ProcessEvent.js";
+import { commandsFolderName, restVersion, commandsFolderPath, eventsFolderPath, eventsFolderName, componentsFolderPath, pathSeparator, processEventsFolderName, clientEventsFolderName, buttonsFolderName, menusFolderName, modalsFolderName, ascendDirectoryString, commandPrefix, componentsFolderName } from "../constants.js";
+
+import chalk from "chalk";
 
 export class SlimeBot extends Client {
 
