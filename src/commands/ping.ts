@@ -5,7 +5,7 @@ import { Message } from "../enums/language/Message.js";
 export default {
     data: new SlashCommandBuilder()
         .setName("ping")
-        .setDescription("Pings the bot."),
+        .setDescription("Pings the bot. Returns information about the bot's latency."),
     async execute(interaction, bot) {
         const message = await interaction.deferReply({
             fetchReply: true,
@@ -14,7 +14,7 @@ export default {
 
         const messageCreationLatency = message.createdTimestamp - interaction.createdTimestamp;
 
-        const totalPing = bot.ws.ping + messageCreationLatency;
+        const totalLatency = bot.ws.ping + messageCreationLatency;
 
         const languageManager = bot.languageManager;
 
@@ -22,7 +22,7 @@ export default {
             embeds: [
                 new EmbedBuilder()
                     .setTitle(languageManager.getMessageByDiscordUser(Message.Ping, interaction.user))
-                    .setDescription(languageManager.getMessageByDiscordUser(Message.PingResult, interaction.user, interaction.createdTimestamp, message.createdTimestamp, messageCreationLatency, bot.ws.ping, totalPing))
+                    .setDescription(languageManager.getMessageByDiscordUser(Message.PingResult, interaction.user, interaction.createdTimestamp, message.createdTimestamp, messageCreationLatency, bot.ws.ping, totalLatency))
             ],
         });
     },
