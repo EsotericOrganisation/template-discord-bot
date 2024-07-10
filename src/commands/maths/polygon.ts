@@ -5,6 +5,7 @@ import {
 	EmbedBuilder,
 	Message,
 	AttachmentBuilder,
+	Colors
 } from "discord.js";
 import {Command} from "../../types";
 import {parseMath} from "../../functions.js";
@@ -15,84 +16,84 @@ export const polygon: Command = {
 		.setDescription(
 			"Get info about a polygon. Add the inscription level for an input by adding a comma and the level.",
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option
 				.setName("sides")
 				.setDescription(
 					"The number of sides of the polygon. E.g. a pentagon has 5 sides.",
 				),
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option
 				.setName("side-length")
 				.setDescription("The length of the sides of the polygon."),
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option
 				.setName("apothem-length")
 				.setDescription(
 					"The length of the apothem (the shortest distance between the center and the sides).",
 				),
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option
 				.setName("radius-length")
 				.setDescription(
 					"The length of the radius of the polygon (the distance between the center and the corners).",
 				),
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option.setName("polygon-area").setDescription("The area of the polygon."),
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option
 				.setName("incircle-area")
 				.setDescription(
 					"The area of the incircle (the circle where the length of the radius = the apothem length).",
 				),
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option
 				.setName("incircle-circumference")
 				.setDescription("The circumference of the incircle."),
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option
 				.setName("circumcircle-area")
 				.setDescription(
 					"The area of the circumcircle. (the circle where the length of the radius = polygon radius length).",
 				),
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option
 				.setName("circumcircle-circumference")
 				.setDescription("The circumference of the circumcircle"),
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option
 				.setName("interior-angle-alpha")
 				.setDescription(
 					"The innermost angle of the triangle which divides the polygon.",
 				),
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option
 				.setName("interior-angle-beta")
 				.setDescription(
 					"The interior angle that the horizontal line makes with the innermost radius.",
 				),
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option
 				.setName("interior-angle-gamma")
 				.setDescription("The interior angle of the polygon."),
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option
 				.setName("exterior-angle-delta")
 				.setDescription("The exterior angle of the polygon."),
 		)
-		.addStringOption((option) =>
+		.addNumberOption((option) =>
 			option
 				.setName("inscription-levels")
 				.setDescription(
