@@ -466,7 +466,7 @@ export const polygon: Command = {
 								: delta.times(new Decimal(Math.PI).dividedBy(180))
 						} rad)\``,
 					)
-					.setColor("Transparent"),
+					.setColor(Colors.Red),
 			],
 			files: [attachment],
 		});
