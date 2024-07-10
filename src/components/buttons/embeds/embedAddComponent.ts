@@ -94,7 +94,7 @@ export default {
 									.setLabel("Embed Colour")
 									.setRequired(false)
 									.setStyle(TextInputStyle.Short)
-									.setPlaceholder("#ff0000 | 0xff0000 | Red | Transparent "),
+									.setPlaceholder("#ff0000 | 0xff0000 | Red"),
 							),
 							new ActionRowBuilder().addComponents(
 								new TextInputBuilder()

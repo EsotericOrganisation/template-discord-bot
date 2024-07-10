@@ -21,6 +21,7 @@ import {
 	ToAPIApplicationCommandOptions,
 	Interaction,
 	MessageReaction,
+	Colors,
 } from "discord.js";
 import {
 	wordNumberEnding,
@@ -2153,7 +2154,7 @@ class FunctionMessageBuilder {
 						),
 					).join("")}`.slice(0, 4096),
 				)
-				.setColor("Transparent"),
+				.setColor(Colors.Aqua),
 		];
 
 		this.files = [

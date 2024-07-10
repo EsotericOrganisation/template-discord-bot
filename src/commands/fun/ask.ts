@@ -2,6 +2,7 @@
 import {
 	ChatInputCommandInteraction,
 	Client,
+	Colors,
 	EmbedBuilder,
 	SlashCommandBuilder,
 } from "discord.js";
@@ -42,7 +43,7 @@ export const ask: Command = {
 					new EmbedBuilder()
 						.setTitle(`> ${prompt}`)
 						.setDescription(await generateText(prompt, temperature ?? 1))
-						.setColor("Transparent")
+						.setColor(Colors.Aqua)
 						.setAuthor({
 							name: "SlimeGPT",
 							iconURL: client.user?.displayAvatarURL({

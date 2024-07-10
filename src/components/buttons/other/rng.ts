@@ -1,5 +1,5 @@
 import {ButtonStyle} from "discord-api-types/v9";
-import {ActionRowBuilder, EmbedBuilder, ButtonBuilder} from "discord.js";
+import {ActionRowBuilder, EmbedBuilder, ButtonBuilder, Colors} from "discord.js";
 import {RNG} from "../../../functions.js";
 
 export default {
@@ -24,7 +24,7 @@ export default {
 							/\./.test(embed.description),
 						)}`,
 					)
-					.setColor("Transparent"),
+					.setColor(Colors.Aqua),
 			],
 			components: [
 				new ActionRowBuilder().addComponents(

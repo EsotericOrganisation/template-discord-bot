@@ -1,5 +1,5 @@
 import Decimal from "decimal.js";
-import {SlashCommandSubcommandBuilder, EmbedBuilder} from "discord.js";
+import {SlashCommandSubcommandBuilder, EmbedBuilder, Colors} from "discord.js";
 import {ErrorMessageBuilder} from "../../classes.js";
 import {
 	sum,
@@ -260,7 +260,7 @@ export const command: Command = {
 				new EmbedBuilder()
 					.setTitle(input.join())
 					.setDescription(resultArray.join("\n\n"))
-					.setColor("Transparent"),
+					.setColor(Colors.Aqua),
 			],
 		});
 	},

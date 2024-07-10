@@ -4,6 +4,7 @@ import {
 	ActionRowBuilder,
 	ButtonBuilder,
 	ButtonStyle,
+	Colors,
 } from "discord.js";
 import {RNG} from "../../functions.js";
 import {Command} from "../../types";
@@ -57,7 +58,7 @@ export const command: Command = {
 							interaction.options.getBoolean("decimal"),
 						)}`,
 					)
-					.setColor("Transparent"),
+					.setColor(Colors.Aqua),
 			],
 			components: [
 				new ActionRowBuilder().addComponents(

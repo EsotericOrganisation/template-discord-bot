@@ -1,4 +1,4 @@
-import {ChannelType, EmbedBuilder, PermissionsBitField} from "discord.js";
+import {ChannelType, Colors, EmbedBuilder, PermissionsBitField} from "discord.js";
 import {
 	EmbedFileMessageBuilder,
 	ErrorMessageBuilder,
@@ -167,7 +167,7 @@ export default {
 							embeds: [
 								new EmbedBuilder()
 									.setDescription("> Attempting to kill process...")
-									.setColor("Transparent"),
+									.setColor(Colors.Aqua),
 							],
 						});
 
