@@ -141,7 +141,7 @@ export class SlimeBot extends Client {
             switch (componentTypeFolder) {
                 case buttonsFolderName:
                     for (const file of componentType) {
-                        const button: Button = (await import(relativeComponentFolderPath + pathSeparator + buttonsFolderName + pathSeparator + file)).default as Button;
+                        const button = (await import(relativeComponentFolderPath + pathSeparator + buttonsFolderName + pathSeparator + file)).default as Button;
 
                         this.buttons.set(button.id, button);
                     }
@@ -157,7 +157,7 @@ export class SlimeBot extends Client {
                     break;
                 case modalsFolderName:
                     for (const file of componentType) {
-                        const modal: Modal = (await import(relativeComponentFolderPath + pathSeparator + modalsFolderName + pathSeparator + file)).default as Modal;
+                        const modal = (await import(relativeComponentFolderPath + pathSeparator + modalsFolderName + pathSeparator + file)).default as Modal;
 
                         this.modals.set(modal.id, modal);
                     }
