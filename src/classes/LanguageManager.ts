@@ -8,7 +8,7 @@ import { Message } from "../enums/language/Message.js";
 import { DiscordUserID } from "../types/user/DiscordUserID.js";
 import { SlimeBot } from "./SlimeBot.js";
 import { User } from "discord.js";
-import { UserData } from "./UserData.js";
+import { UserData } from "../types/user/UserData.js";
 
 export class LanguageManager {
 

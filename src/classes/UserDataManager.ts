@@ -1,6 +1,6 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { DiscordUserID } from "../types/user/DiscordUserID.js";
-import { UserData } from "./UserData.js";
+import { UserData } from "../types/user/UserData.js";
 import { botDataFolderPath, pathSeparator, userDataFolderName } from "../constants.js";
 import { SlimeBot } from "./SlimeBot.js";
 
