@@ -10,6 +10,9 @@ export const commandPrefix = "/";
 export const dataFolderName = "data";
 export const dataFolderPath = dataFolderName;
 
+export const botDataFolderName = "discordBots"
+export const botDataFolderPath = dataFolderName + pathSeparator + botDataFolderName;
+
 export const userDataFolderName = "users";
 
 export const languagesFolderName = "languages";
