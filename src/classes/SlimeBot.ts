@@ -37,7 +37,7 @@ export class SlimeBot extends Client {
         this.discordBotClientID = botConfiguration.discordBotClientID;
         this.adminDiscordUserIDs = botConfiguration.adminDiscordUserIDs;
 
-        this.dataManager = new DataManager();
+        this.dataManager = new DataManager(this);
         this.languageManager = new LanguageManager(this);
 
         this.dataManager.load();
