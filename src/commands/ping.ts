@@ -13,16 +13,15 @@ export default {
         });
 
         const messageCreationLatency = message.createdTimestamp - interaction.createdTimestamp;
-
-        const totalLatency = bot.ws.ping + messageCreationLatency;
-
+        const wsPing = Math.max(bot.ws.ping, 0);
+        const totalLatency = wsPing + messageCreationLatency;
         const languageManager = bot.languageManager;
 
         interaction.editReply({
             embeds: [
                 new EmbedBuilder()
                     .setTitle(languageManager.getMessageByDiscordUser(Message.Ping, interaction.user))
-                    .setDescription(languageManager.getMessageByDiscordUser(Message.PingResult, interaction.user, interaction.createdTimestamp, message.createdTimestamp, messageCreationLatency, bot.ws.ping, totalLatency))
+                    .setDescription(languageManager.getMessageByDiscordUser(Message.PingResult, interaction.user, interaction.createdTimestamp, message.createdTimestamp, messageCreationLatency, wsPing, totalLatency))
             ],
         });
     },
