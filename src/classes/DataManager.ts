@@ -29,7 +29,7 @@ export class DataManager {
     }
 
     removeDataFolders() {
-        rmSync(dataFolderPath, {recursive: true})
+        rmSync(this.botDataFolderPath, {recursive: true})
     }
 
     load() {
