@@ -2,7 +2,7 @@ export enum Message {
     Ping = "ping",
     PingResult = "pingResult",
 
-    ReloadedSuccessfully = "reloadedSuccessfully",
+    ReloadedBotSuccessfully = "reloadedBotSuccessfully",
 
     ExecuteCode = "executeCode",
     CodeToExecute = "codeToExecute",

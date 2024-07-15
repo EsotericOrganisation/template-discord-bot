@@ -4,7 +4,7 @@ import { Message } from "../enums/language/Message.js";
 
 export default {
     data: new SlashCommandBuilder()
-        .setName("reload")
+        .setName("reload-bot")
         .setDescription("Reloads the bot settings, data and language information."),
     isBotAdminOnly: true,
     async execute(interaction, bot) {
@@ -12,6 +12,6 @@ export default {
 
         await bot.reload();
 
-        await interaction.editReply({ content: bot.languageManager.getMessageByDiscordUser(Message.ReloadedSuccessfully, interaction.user) })
+        await interaction.editReply({ content: bot.languageManager.getMessageByDiscordUser(Message.ReloadedBotSuccessfully, interaction.user) })
     },
 } as Command;

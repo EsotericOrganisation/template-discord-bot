@@ -2,7 +2,7 @@
     "ping": "Ping",
     "pingResult": "> Interaction creation timestamp: `{0}ms`\n> Message creation timestamp: `{1}ms`\n> \n> Message creation latency = `{1}ms - {0}ms` = `{2}ms`\n\n> Bot WS ping: `{3}ms`\n\nTotal latency = `{2}ms + {3}ms` = `{4}ms`",
 
-    "reloadedSuccessfully": "Reloaded the bot successfully!",
+    "reloadedBotSuccessfully": "Reloaded the bot successfully!",
 
     "executeCode": "Execute code",
     "codeToExecute": "Code to execute",
