@@ -1,6 +1,6 @@
-import { BotConfiguration } from "../types/bot/BotConfiguration.js";
-import { Configuration } from "../types/bot/Configuration.js";
-import { DiscordUserID } from "../types/user/DiscordUserID.js";
+import { BotConfiguration } from "../../types/bot/BotConfiguration.js";
+import { Configuration } from "../../types/bot/Configuration.js";
+import { DiscordUserID } from "../../types/user/DiscordUserID.js";
 import { SlimeBot } from "./SlimeBot.js";
 
 export class SlimeBotManager {

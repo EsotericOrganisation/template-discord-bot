@@ -1,4 +1,4 @@
-import { SlimeBot } from "../../classes/SlimeBot.js";
+import { SlimeBot } from "../../classes/bot/SlimeBot.js";
 
 export type Event = {
     readonly name: string;

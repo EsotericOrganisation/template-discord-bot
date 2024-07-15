@@ -1,5 +1,5 @@
 import { MessageComponentInteraction, ModalSubmitInteraction } from "discord.js";
-import { SlimeBot } from "../../classes/SlimeBot.js";
+import { SlimeBot } from "../../classes/bot/SlimeBot.js";
 
 export type Component = {
     readonly id: string;

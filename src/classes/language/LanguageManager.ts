@@ -1,14 +1,14 @@
-import { Language } from "../enums/language/Language.js";
-import { LanguageInformation } from "../types/language/LanguageInformation.js";
+import { Language } from "../../enums/language/Language.js";
+import { LanguageInformation } from "../../types/language/LanguageInformation.js";
 import { readdirSync, readFileSync } from "fs";
-import { languagesFolderPath, pathSeparator } from "../constants.js";
-import { MessageMap } from "../types/language/MessageMap.js";
-import { LanguageManifest } from "../types/language/LanguageManifest.js";
-import { Message } from "../enums/language/Message.js";
-import { DiscordUserID } from "../types/user/DiscordUserID.js";
-import { SlimeBot } from "./SlimeBot.js";
+import { languagesFolderPath, pathSeparator } from "../../constants.js";
+import { MessageMap } from "../../types/language/MessageMap.js";
+import { LanguageManifest } from "../../types/language/LanguageManifest.js";
+import { Message } from "../../enums/language/Message.js";
+import { DiscordUserID } from "../../types/user/DiscordUserID.js";
+import { SlimeBot } from "../bot/SlimeBot.js";
 import { User } from "discord.js";
-import { UserData } from "../types/user/UserData.js";
+import { UserData } from "../../types/user/UserData.js";
 
 export class LanguageManager {
 

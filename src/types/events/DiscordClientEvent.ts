@@ -1,5 +1,5 @@
 import { ClientEvents } from "discord.js";
-import { SlimeBot } from "../../classes/SlimeBot.js";
+import { SlimeBot } from "../../classes/bot/SlimeBot.js";
 import { Event } from "./Event.js";
 
 export interface DiscordClientEvent extends Event {

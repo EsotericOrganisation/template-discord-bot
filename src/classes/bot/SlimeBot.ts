@@ -1,18 +1,18 @@
 import { Client, Collection, IntentsBitField, REST, RESTPostAPIApplicationCommandsJSONBody, Routes } from "discord.js";
 import { readdirSync } from "fs";
-import { Command } from "../types/commands/Command.js";
-import { Button } from "../types/components/Button.js";
-import { Menu } from "../types/components/Menu.js";
-import { Modal } from "../types/components/Modal.js";
-import { DiscordClientEvent } from "../types/events/DiscordClientEvent.js";
-import { ProcessEvent } from "../types/events/ProcessEvent.js";
-import { commandsFolderName, restVersion, commandsFolderPath, eventsFolderPath, eventsFolderName, componentsFolderPath, pathSeparator, processEventsFolderName, clientEventsFolderName, buttonsFolderName, menusFolderName, modalsFolderName, ascendDirectoryString, commandPrefix, componentsFolderName } from "../constants.js";
-import { LanguageManager } from "./LanguageManager.js";
-import { UserDataManager } from "./UserDataManager.js";
-import { DiscordUserID } from "../types/user/DiscordUserID.js";
+import { Command } from "../../types/commands/Command.js";
+import { Button } from "../../types/components/Button.js";
+import { Menu } from "../../types/components/Menu.js";
+import { Modal } from "../../types/components/Modal.js";
+import { DiscordClientEvent } from "../../types/events/DiscordClientEvent.js";
+import { ProcessEvent } from "../../types/events/ProcessEvent.js";
+import { commandsFolderName, restVersion, commandsFolderPath, eventsFolderPath, eventsFolderName, componentsFolderPath, pathSeparator, processEventsFolderName, clientEventsFolderName, buttonsFolderName, menusFolderName, modalsFolderName, ascendDirectoryString, commandPrefix, componentsFolderName } from "../../constants.js";
+import { LanguageManager } from "../language/LanguageManager.js";
+import { UserDataManager } from "../data/user/UserDataManager.js";
+import { DiscordUserID } from "../../types/user/DiscordUserID.js";
 
 import chalk from "chalk";
-import { BotConfiguration } from "../types/bot/BotConfiguration.js";
+import { BotConfiguration } from "../../types/bot/BotConfiguration.js";
 
 export class SlimeBot extends Client {
 
