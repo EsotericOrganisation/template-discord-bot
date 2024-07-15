@@ -16,19 +16,19 @@ import { BotConfiguration } from "../types/bot/BotConfiguration.js";
 
 export class SlimeBot extends Client {
 
-    readonly botToken: string;
-    readonly discordBotClientID: DiscordUserID;
-    adminDiscordUserIDs: DiscordUserID[] = [];
+    private readonly botToken: string;
+    public readonly discordBotClientID: DiscordUserID;
+    public adminDiscordUserIDs: DiscordUserID[] = [];
 
-    commandArray: RESTPostAPIApplicationCommandsJSONBody[];
-    commands: Collection<string, Command>;
+    public commandArray: RESTPostAPIApplicationCommandsJSONBody[];
+    public commands: Collection<string, Command>;
 
-    buttons: Collection<string, Button>;
-    menus: Collection<string, Menu>;
-    modals: Collection<string, Modal>;
+    public buttons: Collection<string, Button>;
+    public menus: Collection<string, Menu>;
+    public modals: Collection<string, Modal>;
 
-    readonly dataManager: DataManager;
-    readonly languageManager: LanguageManager;
+    public readonly dataManager: DataManager;
+    public readonly languageManager: LanguageManager;
 
     constructor(botConfiguration: BotConfiguration) {
         super({ intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMembers] });

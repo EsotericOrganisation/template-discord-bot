@@ -9,7 +9,7 @@ export class DataManager {
     private readonly botDataFolderPath: string;
     private readonly userDataFolderPath: string;
 
-    readonly userData: Map<DiscordUserID, UserData> = new Map();
+    private readonly userData: Map<DiscordUserID, UserData> = new Map();
 
     constructor(slimeBot: SlimeBot) {
         this.botDataFolderPath = botDataFolderPath + pathSeparator + slimeBot.discordBotClientID;

@@ -12,9 +12,9 @@ import { UserData } from "./UserData.js";
 
 export class LanguageManager {
 
-    readonly bot: SlimeBot;
+    private readonly bot: SlimeBot;
 
-    readonly languageDataMap: Map<Language, LanguageInformation> = new Map();
+    private readonly languageDataMap: Map<Language, LanguageInformation> = new Map();
 
     constructor(bot: SlimeBot) {
         this.bot = bot;
