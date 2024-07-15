@@ -4,7 +4,7 @@ import { UserData } from "./UserData.js";
 import { botDataFolderPath, pathSeparator, userDataFolderName } from "../constants.js";
 import { SlimeBot } from "./SlimeBot.js";
 
-export class DataManager {
+export class UserDataManager {
 
     private readonly botDataFolderPath: string;
     private readonly userDataFolderPath: string;

@@ -8,7 +8,7 @@ import { DiscordClientEvent } from "../types/events/DiscordClientEvent.js";
 import { ProcessEvent } from "../types/events/ProcessEvent.js";
 import { commandsFolderName, restVersion, commandsFolderPath, eventsFolderPath, eventsFolderName, componentsFolderPath, pathSeparator, processEventsFolderName, clientEventsFolderName, buttonsFolderName, menusFolderName, modalsFolderName, ascendDirectoryString, commandPrefix, componentsFolderName } from "../constants.js";
 import { LanguageManager } from "./LanguageManager.js";
-import { DataManager } from "./DataManager.js";
+import { UserDataManager } from "./UserDataManager.js";
 import { DiscordUserID } from "../types/user/DiscordUserID.js";
 
 import chalk from "chalk";
@@ -27,7 +27,7 @@ export class SlimeBot extends Client {
     public menus: Collection<string, Menu>;
     public modals: Collection<string, Modal>;
 
-    public readonly dataManager: DataManager;
+    public readonly dataManager: UserDataManager;
     public readonly languageManager: LanguageManager;
 
     constructor(botConfiguration: BotConfiguration) {
@@ -37,7 +37,7 @@ export class SlimeBot extends Client {
         this.discordBotClientID = botConfiguration.discordBotClientID;
         this.adminDiscordUserIDs = botConfiguration.adminDiscordUserIDs;
 
-        this.dataManager = new DataManager(this);
+        this.dataManager = new UserDataManager(this);
         this.languageManager = new LanguageManager(this);
 
         this.dataManager.load();
