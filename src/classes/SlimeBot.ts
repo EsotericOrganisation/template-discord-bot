@@ -10,14 +10,14 @@ import { commandsFolderName, restVersion, commandsFolderPath, eventsFolderPath, 
 import { LanguageManager } from "./LanguageManager.js";
 import { DataManager } from "./DataManager.js";
 import { DiscordUserID } from "../types/user/DiscordUserID.js";
-import { BotConfiguration } from "../types/bot/BotConfiguration.js";
 
 import chalk from "chalk";
+import { BotConfiguration } from "../types/bot/BotConfiguration.js";
 
 export class SlimeBot extends Client {
 
     readonly botToken: string;
-
+    readonly discordBotClientID: DiscordUserID;
     adminDiscordUserIDs: DiscordUserID[] = [];
 
     commandArray: RESTPostAPIApplicationCommandsJSONBody[];
@@ -30,12 +30,12 @@ export class SlimeBot extends Client {
     readonly dataManager: DataManager;
     readonly languageManager: LanguageManager;
 
-    constructor(botToken: string) {
+    constructor(botConfiguration: BotConfiguration) {
         super({ intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMembers] });
 
-        this.botToken = botToken;
-
-        this.loadConfig();
+        this.botToken = botConfiguration.discordBotToken;
+        this.discordBotClientID = botConfiguration.discordBotClientID;
+        this.adminDiscordUserIDs = botConfiguration.adminDiscordUserIDs;
 
         this.dataManager = new DataManager();
         this.languageManager = new LanguageManager(this);
@@ -43,22 +43,14 @@ export class SlimeBot extends Client {
         this.dataManager.load();
     }
 
-    loadConfig() {
-        import("../../config/config.json", { with: { type: "json" } }).then((configFile) => {
-            const config = configFile.default as BotConfiguration;
-
-            const { adminDiscordUserIDs } = config;
-
-            if (adminDiscordUserIDs) {
-                this.adminDiscordUserIDs = adminDiscordUserIDs;
-            }
-        });
-    }
-
     async run() {
         await this.login(this.botToken);
 
         await this.runHandlers();
+    }
+
+    stop() {
+        this.dataManager.save();
     }
 
     async runHandlers() {
@@ -168,7 +160,6 @@ export class SlimeBot extends Client {
     }
 
     async reload() {
-        this.loadConfig();
         await this.runHandlers();
 
         const {languageManager, dataManager} = this;

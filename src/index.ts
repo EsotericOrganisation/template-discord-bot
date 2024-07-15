@@ -1,12 +1,8 @@
 import configFile from "../config/config.json" with { type: "json" };
+const config = configFile as Configuration;
 
-import { SlimeBot } from "./classes/SlimeBot.js";
-import { BotConfiguration } from "./types/bot/BotConfiguration.js";
+import { SlimeBotManager } from "./classes/SlimeBotManager.js";
+import { Configuration } from "./types/bot/Configuration.js";
 
-const config = configFile as BotConfiguration;
-
-const { discordBotToken } = config;
-
-const slimeBot = new SlimeBot(discordBotToken);
-
-slimeBot.run();
+const botManager = new SlimeBotManager(config);
+botManager.run();
