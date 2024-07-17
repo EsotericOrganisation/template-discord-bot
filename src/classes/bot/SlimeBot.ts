@@ -75,7 +75,7 @@ export class SlimeBot extends Client {
             switch (eventSubfolder) {
                 case clientEventsFolderName:
                     for (const eventFile of eventFiles) {
-                        const event = (await import(ascendDirectoryString + pathSeparator + eventsFolderName + pathSeparator + eventSubfolder + pathSeparator + eventFile)).default as DiscordClientEvent;
+                        const event = (await import(ascendDirectoryString + pathSeparator + ascendDirectoryString + pathSeparator + eventsFolderName + pathSeparator + eventSubfolder + pathSeparator + eventFile)).default as DiscordClientEvent;
 
                         if (event.once) {
                             this.once(event.name, async (...args) => await event.execute(this, ...args));
@@ -87,7 +87,7 @@ export class SlimeBot extends Client {
                     break;
                 case processEventsFolderName:
                     for (const eventFile of eventFiles) {
-                        const event = (await import(ascendDirectoryString + pathSeparator + eventsFolderName + pathSeparator + eventSubfolder + pathSeparator + eventFile)).default as ProcessEvent;
+                        const event = (await import(ascendDirectoryString + pathSeparator + ascendDirectoryString + pathSeparator + eventsFolderName + pathSeparator + eventSubfolder + pathSeparator + eventFile)).default as ProcessEvent;
 
                         if (event.once) {
                             process.once(event.name, (...args) => event.execute(this, ...args));
@@ -108,7 +108,7 @@ export class SlimeBot extends Client {
         const commandFiles = readdirSync(commandsFolderPath);
 
         for (const file of commandFiles) {
-            const command = (await import(ascendDirectoryString + pathSeparator + commandsFolderName + pathSeparator + file)).default as Command;
+            const command = (await import(ascendDirectoryString + pathSeparator + ascendDirectoryString + pathSeparator + commandsFolderName + pathSeparator + file)).default as Command;
 
             console.log("Handling command " + chalk.bold(commandPrefix + command.data.name) + ".");
 
@@ -133,7 +133,7 @@ export class SlimeBot extends Client {
         for (const componentTypeFolder of componentFolder) {
             const componentType = readdirSync(componentsFolderPath + pathSeparator + componentTypeFolder);
 
-            const relativeComponentFolderPath = ascendDirectoryString + pathSeparator + componentsFolderName;
+            const relativeComponentFolderPath = ascendDirectoryString + pathSeparator + ascendDirectoryString + pathSeparator + componentsFolderName;
 
             switch (componentTypeFolder) {
                 case buttonsFolderName:
