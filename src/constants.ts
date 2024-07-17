@@ -7,6 +7,12 @@ export const restVersion = "10";
 
 export const commandPrefix = "/";
 
+export const configFolderName = "config";
+export const configFolderPath = configFolderName;
+
+export const configFileName = "config.json";
+export const configFilePath = configFolderName + pathSeparator + configFileName;
+
 export const dataFolderName = "data";
 export const dataFolderPath = dataFolderName;
 

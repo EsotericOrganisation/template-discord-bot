@@ -13,8 +13,11 @@ import { DiscordUserID } from "../../types/user/DiscordUserID.js";
 
 import chalk from "chalk";
 import { BotConfiguration } from "../../types/bot/BotConfiguration.js";
+import { SlimeBotManager } from "./SlimeBotManager.js";
 
 export class SlimeBot extends Client {
+
+    public readonly botManager: SlimeBotManager;
 
     private readonly botToken: string;
     public readonly discordBotClientID: DiscordUserID;
@@ -30,8 +33,10 @@ export class SlimeBot extends Client {
     public readonly dataManager: UserDataManager;
     public readonly languageManager: LanguageManager;
 
-    constructor(botConfiguration: BotConfiguration) {
+    constructor(botManager: SlimeBotManager, botConfiguration: BotConfiguration) {
         super({ intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMembers] });
+
+        this.botManager = botManager;
 
         this.botToken = botConfiguration.discordBotToken;
         this.discordBotClientID = botConfiguration.discordBotClientID;

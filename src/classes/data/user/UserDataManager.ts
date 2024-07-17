@@ -19,12 +19,8 @@ export class UserDataManager {
     }
 
     createDataFolders() {
-        if (!existsSync(this.botDataFolderPath)) {
-            mkdirSync(this.botDataFolderPath);
-        }
-
         if (!existsSync(this.userDataFolderPath)) {
-            mkdirSync(this.userDataFolderPath);
+            mkdirSync(this.userDataFolderPath, {recursive: true});
         }
     }
 
