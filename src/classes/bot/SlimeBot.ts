@@ -11,7 +11,6 @@ import { LanguageManager } from "../language/LanguageManager.js";
 import { UserDataManager } from "../data/user/UserDataManager.js";
 import { DiscordUserID } from "../../types/user/DiscordUserID.js";
 
-import chalk from "chalk";
 import { BotConfiguration } from "../../types/bot/BotConfiguration.js";
 import { SlimeBotManager } from "./SlimeBotManager.js";
 
@@ -110,7 +109,7 @@ export class SlimeBot extends Client {
         for (const file of commandFiles) {
             const command = (await import(ascendDirectoryString + pathSeparator + ascendDirectoryString + pathSeparator + commandsFolderName + pathSeparator + file)).default as Command;
 
-            console.log("Handling command " + chalk.bold(commandPrefix + command.data.name) + ".");
+            console.log("Handling command " + commandPrefix + command.data.name + ".");
 
             this.commandArray.push(command.data.toJSON());
             this.commands.set(command.data.name, command);
@@ -120,7 +119,7 @@ export class SlimeBot extends Client {
             .setToken(this.botToken)
             .put(Routes.applicationCommands(this.user.id), { body: this.commandArray, });
 
-        console.log(chalk.greenBright("Successfully handled " + chalk.bold(this.commandArray.length) + " command(s)."))
+        console.log("Successfully handled " + this.commandArray.length + " command(s).");
     };
 
     async handleComponents() {
