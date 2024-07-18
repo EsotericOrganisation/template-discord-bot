@@ -15,8 +15,6 @@ export class SlimeBotManager {
 
         const { discordBotConfigurations } = this.botConfig;
 
-        console.log(this.botConfig);
-
         for (const discordBotConfiguration of discordBotConfigurations) {
             this.addBot(discordBotConfiguration);
         }
