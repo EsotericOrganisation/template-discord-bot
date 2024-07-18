@@ -117,7 +117,7 @@ export class SlimeBot extends Client {
 
         await new REST({ version: restVersion })
             .setToken(this.botToken)
-            .put(Routes.applicationCommands(this.user.id), { body: this.commandArray, });
+            .put(Routes.applicationCommands(this.discordBotClientID), { body: this.commandArray, });
 
         console.log("Successfully handled " + this.commandArray.length + " command(s).");
     };
