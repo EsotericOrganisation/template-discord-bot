@@ -1,7 +1,7 @@
 import { ModalSubmitInteraction } from "discord.js";
-import { SlimeBot } from "../../classes/bot/SlimeBot.js";
+import { Bot } from "../../classes/bot/Bot.js";
 import { Component } from "./Component.js";
 
 export interface Modal extends Component {
-    execute(interaction: ModalSubmitInteraction, bot?: SlimeBot): Promise<void>;
+    execute(interaction: ModalSubmitInteraction, bot?: Bot): Promise<void>;
 }

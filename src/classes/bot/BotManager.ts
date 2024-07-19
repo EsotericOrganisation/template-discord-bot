@@ -1,12 +1,12 @@
 import { BotConfiguration } from "../../types/bot/BotConfiguration.js";
 import { Configuration } from "../../types/bot/Configuration.js";
 import { DiscordUserID } from "../../types/user/DiscordUserID.js";
-import { SlimeBot } from "./SlimeBot.js";
+import { Bot } from "./Bot.js";
 
-export class SlimeBotManager {
+export class BotManager {
 
     private botConfig: Configuration;
-    public readonly slimeBots: Map<DiscordUserID, SlimeBot> = new Map();
+    public readonly bots: Map<DiscordUserID, Bot> = new Map();
     public readonly permanentlyStoppedBotIDs: DiscordUserID[] = [];
 
     public constructor() {}
@@ -22,7 +22,7 @@ export class SlimeBotManager {
     }
 
     public async stop(permanently: boolean) {
-        for (const [, bot] of this.slimeBots) {
+        for (const [, bot] of this.bots) {
             await bot.stop(permanently);
 
             if (permanently) {
@@ -34,7 +34,7 @@ export class SlimeBotManager {
     public async reload(configFilePath: string) {
         await this.setConfig(configFilePath);
 
-        for (const [id, bot] of this.slimeBots) {
+        for (const [id, bot] of this.bots) {
             const searchedBot = this.botConfig.discordBotConfigurations.find((configuration) => configuration.discordBotClientID === id);
 
             if (!searchedBot) {
@@ -49,13 +49,13 @@ export class SlimeBotManager {
                 continue;
             }
 
-            const bot = this.slimeBots.get(id);
+            const bot = this.bots.get(id);
             if (!bot) {
-                this.slimeBots.set(id, new SlimeBot(this, botConfig));
+                this.bots.set(id, new Bot(this, botConfig));
             }
         }
 
-        for (const [, bot] of this.slimeBots) {
+        for (const [, bot] of this.bots) {
             await bot.reload();
         }
     }
@@ -68,20 +68,20 @@ export class SlimeBotManager {
         this.botConfig = await this.readConfig(configFilePath);
     }
 
-    private addBotToMap(slimeBot: SlimeBot) {
-        this.slimeBots.set(slimeBot.discordBotClientID as DiscordUserID, slimeBot);
+    private addBotToMap(bot: Bot) {
+        this.bots.set(bot.discordBotClientID as DiscordUserID, bot);
     }
 
     public removeBotFromMapByID(botDiscordUserID: DiscordUserID) {
-        this.slimeBots.delete(botDiscordUserID);
+        this.bots.delete(botDiscordUserID);
     }
 
-    public removeBotFromMap(bot: SlimeBot) {
+    public removeBotFromMap(bot: Bot) {
         this.removeBotFromMapByID(bot.discordBotClientID);
     }
 
     private addBot(botConfig: BotConfiguration) {
-        const newBot = new SlimeBot(this, botConfig);
+        const newBot = new Bot(this, botConfig);
         newBot.run();        
 
         this.addBotToMap(newBot);

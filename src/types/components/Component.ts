@@ -1,7 +1,7 @@
 import { MessageComponentInteraction, ModalSubmitInteraction } from "discord.js";
-import { SlimeBot } from "../../classes/bot/SlimeBot.js";
+import { Bot } from "../../classes/bot/Bot.js";
 
 export type Component = {
     readonly id: string;
-    execute(interaction: MessageComponentInteraction | ModalSubmitInteraction, bot?: SlimeBot): Promise<void>;
+    execute(interaction: MessageComponentInteraction | ModalSubmitInteraction, bot?: Bot): Promise<void>;
 }

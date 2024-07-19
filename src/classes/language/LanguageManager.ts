@@ -6,17 +6,17 @@ import { MessageMap } from "../../types/language/MessageMap.js";
 import { LanguageManifest } from "../../types/language/LanguageManifest.js";
 import { Message } from "../../enums/language/Message.js";
 import { DiscordUserID } from "../../types/user/DiscordUserID.js";
-import { SlimeBot } from "../bot/SlimeBot.js";
+import { Bot } from "../bot/Bot.js";
 import { User } from "discord.js";
 import { UserData } from "../../types/user/UserData.js";
 
 export class LanguageManager {
 
-    private readonly bot: SlimeBot;
+    private readonly bot: Bot;
 
     private readonly languageDataMap: Map<Language, LanguageInformation> = new Map();
 
-    constructor(bot: SlimeBot) {
+    constructor(bot: Bot) {
         this.bot = bot;
 
         this.loadLanguages();

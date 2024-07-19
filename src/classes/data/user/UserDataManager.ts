@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync
 import { DiscordUserID } from "../../../types/user/DiscordUserID.js";
 import { UserData } from "../../../types/user/UserData.js";
 import { botDataFolderPath, pathSeparator, userDataFolderName } from "../../../constants.js";
-import { SlimeBot } from "../../bot/SlimeBot.js";
+import { Bot } from "../../bot/Bot.js";
 
 export class UserDataManager {
 
@@ -11,8 +11,8 @@ export class UserDataManager {
 
     private readonly userData: Map<DiscordUserID, UserData> = new Map();
 
-    constructor(slimeBot: SlimeBot) {
-        this.botDataFolderPath = botDataFolderPath + pathSeparator + slimeBot.discordBotClientID;
+    constructor(bot: Bot) {
+        this.botDataFolderPath = botDataFolderPath + pathSeparator + bot.discordBotClientID;
         this.userDataFolderPath = this.botDataFolderPath + pathSeparator + userDataFolderName;
 
         this.createDataFolders();

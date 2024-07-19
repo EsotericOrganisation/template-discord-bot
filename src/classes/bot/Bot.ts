@@ -12,11 +12,11 @@ import { UserDataManager } from "../data/user/UserDataManager.js";
 import { DiscordUserID } from "../../types/user/DiscordUserID.js";
 
 import { BotConfiguration } from "../../types/bot/BotConfiguration.js";
-import { SlimeBotManager } from "./SlimeBotManager.js";
+import { BotManager } from "./BotManager.js";
 
-export class SlimeBot extends Client {
+export class Bot extends Client {
 
-    public readonly botManager: SlimeBotManager;
+    public readonly botManager: BotManager;
 
     public isRunning: boolean = false;
 
@@ -34,7 +34,7 @@ export class SlimeBot extends Client {
     public readonly dataManager: UserDataManager;
     public readonly languageManager: LanguageManager;
 
-    constructor(botManager: SlimeBotManager, botConfiguration: BotConfiguration) {
+    constructor(botManager: BotManager, botConfiguration: BotConfiguration) {
         super({ intents: [IntentsBitField.Flags.Guilds, IntentsBitField.Flags.GuildMembers] });
 
         this.botManager = botManager;
