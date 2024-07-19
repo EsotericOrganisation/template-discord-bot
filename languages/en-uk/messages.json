@@ -7,5 +7,7 @@
 
     "executeCode": "Execute code",
     "codeToExecute": "Code to execute",
-    "executedCode": "Successfully executed the provided code!"
+    "executedCode": "Successfully executed the provided code!",
+
+    "stoppingBot": "Stopping bot..."
 }

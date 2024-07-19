@@ -54,7 +54,9 @@ export class SlimeBot extends Client {
     }
 
     stop() {
+        console.log("Stopping bot " + this.user.displayName + ".");
         this.dataManager.save();
+        super.destroy();
     }
 
     async runHandlers() {

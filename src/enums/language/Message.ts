@@ -7,5 +7,7 @@ export enum Message {
 
     ExecuteCode = "executeCode",
     CodeToExecute = "codeToExecute",
-    ExecutedCode = "executedCode"
+    ExecutedCode = "executedCode",
+
+    StoppingBot = "stoppingBot"
 }
