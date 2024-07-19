@@ -9,9 +9,6 @@ export default {
     async execute(interaction, bot) {
         await interaction.reply({content: bot.languageManager.getMessageByDiscordUser(Message.StoppingAllBots, interaction.user), ephemeral: true});
 
-        const botManager = bot.botManager;
-        for (const [, bot] of botManager.slimeBots) {
-            bot.stop();
-        }
+        bot.botManager.stop();
     },
 } as Command;
