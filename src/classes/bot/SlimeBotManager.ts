@@ -7,6 +7,7 @@ export class SlimeBotManager {
 
     private botConfig: Configuration;
     public readonly slimeBots: Map<DiscordUserID, SlimeBot> = new Map();
+    public readonly permanentlyStoppedBotIDs: DiscordUserID[] = [];
 
     public constructor() {}
 
@@ -20,9 +21,13 @@ export class SlimeBotManager {
         }
     }
 
-    public stop() {
-        for (const [botDiscordUserID] of this.slimeBots) {
-            this.removeBot(botDiscordUserID);
+    public async stop(permanently: boolean) {
+        for (const [, bot] of this.slimeBots) {
+            await bot.stop(permanently);
+
+            if (permanently) {
+                this.removeBotFromMap(bot);
+            }
         }
     }
 
@@ -33,12 +38,16 @@ export class SlimeBotManager {
             const searchedBot = this.botConfig.discordBotConfigurations.find((configuration) => configuration.discordBotClientID === id);
 
             if (!searchedBot) {
-                bot.stop();
+                await bot.stop(true);
             }
         }
 
         for (const botConfig of this.botConfig.discordBotConfigurations) {
             const id = botConfig.discordBotClientID;
+
+            if (this.permanentlyStoppedBotIDs.includes(id)) {
+                continue;
+            }
 
             const bot = this.slimeBots.get(id);
             if (!bot) {
@@ -63,12 +72,12 @@ export class SlimeBotManager {
         this.slimeBots.set(slimeBot.discordBotClientID as DiscordUserID, slimeBot);
     }
 
-    private getBotFromMap(botDiscordUserID: DiscordUserID) {
-        return this.slimeBots.get(botDiscordUserID);
+    public removeBotFromMapByID(botDiscordUserID: DiscordUserID) {
+        this.slimeBots.delete(botDiscordUserID);
     }
 
-    private removeBotFromMap(botDiscordUserID: DiscordUserID) {
-        this.slimeBots.delete(botDiscordUserID);
+    public removeBotFromMap(bot: SlimeBot) {
+        this.removeBotFromMapByID(bot.discordBotClientID);
     }
 
     private addBot(botConfig: BotConfiguration) {
@@ -76,12 +85,5 @@ export class SlimeBotManager {
         newBot.run();        
 
         this.addBotToMap(newBot);
-    }
-
-    private removeBot(botDiscordUserID: DiscordUserID) {
-        const bot = this.getBotFromMap(botDiscordUserID);
-        bot.stop();
-
-        this.removeBotFromMap(botDiscordUserID);
     }
 }

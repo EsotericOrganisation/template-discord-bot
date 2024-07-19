@@ -5,10 +5,13 @@ import { Message } from "../enums/language/Message.js";
 export default {
     data: new SlashCommandBuilder()
         .setName("stop-bot")
-        .setDescription("Stops the current bot from running."),
+        .setDescription("Stops the current bot from running.")
+        .addBooleanOption((option) => option.setName("permanently").setDescription("Whether the bot should be stopped permanently.")),
     async execute(interaction, bot) {
+        const isPermanentStop = interaction.options.getBoolean("permanently") ?? false;
+
         await interaction.reply({content: bot.languageManager.getMessageByDiscordUser(Message.StoppingBot, interaction.user), ephemeral: true});
 
-        bot.stop();
+        await bot.stop(isPermanentStop);
     },
 } as Command;

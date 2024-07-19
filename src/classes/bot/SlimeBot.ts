@@ -1,4 +1,4 @@
-import { Client, Collection, IntentsBitField, REST, RESTPostAPIApplicationCommandsJSONBody, Routes } from "discord.js";
+import { Client, Collection, IntentsBitField, REST, RESTPostAPIApplicationCommandsJSONBody, Routes, Status } from "discord.js";
 import { readdirSync } from "fs";
 import { Command } from "../../types/commands/Command.js";
 import { Button } from "../../types/components/Button.js";
@@ -17,6 +17,8 @@ import { SlimeBotManager } from "./SlimeBotManager.js";
 export class SlimeBot extends Client {
 
     public readonly botManager: SlimeBotManager;
+
+    public isRunning: boolean = false;
 
     private readonly botToken: string;
     public readonly discordBotClientID: DiscordUserID;
@@ -51,12 +53,23 @@ export class SlimeBot extends Client {
         await this.login(this.botToken);
 
         await this.runHandlers();
+
+        this.isRunning = true;
     }
 
-    stop() {
-        console.log("Stopping bot " + this.user.displayName + ".");
+    async stop(permanently: boolean) {
+        console.log("Stopping bot " + this.user.displayName + (permanently ? " permanently" : "") + ".");
+
+        if (permanently) {
+            this.botManager.removeBotFromMap(this);
+            this.botManager.permanentlyStoppedBotIDs.push(this.discordBotClientID);
+        }
+
+        await super.destroy();
+        await this.ws.client.destroy();
         this.dataManager.save();
-        super.destroy();
+
+        this.isRunning = false;
     }
 
     async runHandlers() {
@@ -166,6 +179,12 @@ export class SlimeBot extends Client {
     }
 
     async reload() {
+        console.log("Reloading " + this.user?.displayName + ".");
+
+        if (!this.isRunning) {
+            this.login(this.botToken);
+        }
+
         await this.runHandlers();
 
         const {languageManager, dataManager} = this;
