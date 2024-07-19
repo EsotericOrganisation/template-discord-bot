@@ -9,5 +9,6 @@
     "codeToExecute": "Code to execute",
     "executedCode": "Successfully executed the provided code!",
 
-    "stoppingBot": "Stopping bot..."
+    "stoppingBot": "Stopping bot...",
+    "stoppingAllBots": "Stopping all bots..."
 }

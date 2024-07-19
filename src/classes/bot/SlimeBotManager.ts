@@ -6,7 +6,7 @@ import { SlimeBot } from "./SlimeBot.js";
 export class SlimeBotManager {
 
     private botConfig: Configuration;
-    private readonly slimeBots: Map<DiscordUserID, SlimeBot> = new Map();
+    public readonly slimeBots: Map<DiscordUserID, SlimeBot> = new Map();
 
     public constructor() {}
 

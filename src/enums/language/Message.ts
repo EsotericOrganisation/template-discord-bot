@@ -9,5 +9,6 @@ export enum Message {
     CodeToExecute = "codeToExecute",
     ExecutedCode = "executedCode",
 
-    StoppingBot = "stoppingBot"
+    StoppingBot = "stoppingBot",
+    StoppingAllBots = "stoppingAllBots"
 }
