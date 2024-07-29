@@ -1,0 +1,11 @@
+{
+    "discordBotConfigurations": [
+        {
+            "discordBotToken": "abc123",
+            "discordBotClientID": "21431414",
+            "adminDiscordUserIDs": [
+                "987654321"
+            ]
+        }
+    ]
+}

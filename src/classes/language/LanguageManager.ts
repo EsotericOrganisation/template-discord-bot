@@ -1,0 +1,68 @@
+import { Language } from "../../enums/language/Language.js";
+import { LanguageInformation } from "../../types/language/LanguageInformation.js";
+import { readdirSync, readFileSync } from "fs";
+import { languagesFolderPath, pathSeparator } from "../../constants.js";
+import { MessageMap } from "../../types/language/MessageMap.js";
+import { LanguageManifest } from "../../types/language/LanguageManifest.js";
+import { Message } from "../../enums/language/Message.js";
+import { DiscordUserID } from "../../types/user/DiscordUserID.js";
+import { Bot } from "../bot/Bot.js";
+import { User } from "discord.js";
+import { UserData } from "../../types/user/UserData.js";
+
+export class LanguageManager {
+
+    private readonly bot: Bot;
+
+    private readonly languageDataMap: Map<Language, LanguageInformation> = new Map();
+
+    constructor(bot: Bot) {
+        this.bot = bot;
+
+        this.loadLanguages();
+    }
+
+    loadLanguages() {
+        const languageFolderNames = readdirSync(languagesFolderPath);
+
+        for (const languageFolderName of languageFolderNames) {
+            const folderPath = languagesFolderPath + pathSeparator + languageFolderName;
+
+            const manifestFile = readFileSync(folderPath + pathSeparator + "manifest.json").toString();
+            const messagesFile = readFileSync(folderPath + pathSeparator + "messages.json").toString();
+
+            const languageData = JSON.parse(manifestFile) as LanguageManifest;
+            const messagesData = JSON.parse(messagesFile) as MessageMap;
+
+            this.languageDataMap.set(languageFolderName as Language, { languageName: languageData.languageName, messages: messagesData })
+        }
+    }
+
+    getMessageByLanguage(message: Message, language: Language, ...parameters: any[]) {
+        const languageData = this.languageDataMap.get(language) ?? this.languageDataMap.get(Language.DefaultLanguage);
+
+        let messageString = languageData.messages[message];
+
+        for (let i = 0; i < parameters.length; i++) {
+            messageString = messageString.replaceAll("{" + i + "}", parameters[i].toString());
+        }
+
+        return messageString;
+    }
+
+    getMessageByUserData(message: Message, userData: UserData, ...parameters: any[]) {
+        return this.getMessageByLanguage(message, userData?.userConfiguartion?.language ?? Language.DefaultLanguage, ...parameters);
+    }
+
+    getMessageByDiscordUserID(message: Message, userID: DiscordUserID, ...parameters: any[]) {
+        const dataManager = this.bot.dataManager;
+
+        const userData = dataManager.getUserData(userID);
+
+        return this.getMessageByUserData(message, userData, ...parameters);
+    }
+
+    getMessageByDiscordUser(message: Message, user: User, ...parameters: any[]) {
+        return this.getMessageByDiscordUserID(message, user.id as DiscordUserID, ...parameters);
+    }
+}
