@@ -1,6 +1,0 @@
-package-lock.json
-.env
-node_modules
-dist
-data/bot.json
-data/video.json
