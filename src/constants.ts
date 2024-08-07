@@ -1,12 +1,16 @@
 import tsConfigFile from "../tsconfig.json" with { type: "json" };
 
+// Technical constants:
 export const ascendDirectoryString = "..";
 export const pathSeparator = "/";
 
+// Versions:
 export const restVersion = "10";
 
+// Bot constants:
 export const commandPrefix = "/";
 
+// File and folder names and paths:
 export const configFolderName = "config";
 export const configFolderPath = configFolderName;
 
