@@ -24,6 +24,9 @@ export const userDataFolderName = "users";
 export const languagesFolderName = "languages";
 export const languagesFolderPath = languagesFolderName;
 
+export const logsFolderName = "logs";
+export const logsFolderPath = logsFolderName;
+
 export const defaultDistributableFolderPath = "dist";
 export const distributableFolderPath = tsConfigFile.compilerOptions.outDir ?? defaultDistributableFolderPath;
 
