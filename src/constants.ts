@@ -16,7 +16,7 @@ export const configFilePath = configFolderName + pathSeparator + configFileName;
 export const dataFolderName = "data";
 export const dataFolderPath = dataFolderName;
 
-export const botDataFolderName = "discordBots"
+export const botDataFolderName = "discord-bots"
 export const botDataFolderPath = dataFolderName + pathSeparator + botDataFolderName;
 
 export const userDataFolderName = "users";
