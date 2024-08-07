@@ -4,4 +4,5 @@ export type BotConfiguration = {
     discordBotToken: string;
     discordBotClientID: DiscordUserID;
     adminDiscordUserIDs?: DiscordUserID[];
+    defaultLanguage: string;
 }

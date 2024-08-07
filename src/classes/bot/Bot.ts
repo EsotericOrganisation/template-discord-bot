@@ -23,6 +23,7 @@ export class Bot extends Client {
     private readonly botToken: string;
     public readonly discordBotClientID: DiscordUserID;
     public adminDiscordUserIDs: DiscordUserID[] = [];
+    public readonly defaultLanguage: string;
 
     public commandArray: RESTPostAPIApplicationCommandsJSONBody[];
     public commands: Collection<string, Command>;
@@ -42,6 +43,7 @@ export class Bot extends Client {
         this.botToken = botConfiguration.discordBotToken;
         this.discordBotClientID = botConfiguration.discordBotClientID;
         this.adminDiscordUserIDs = botConfiguration.adminDiscordUserIDs;
+        this.defaultLanguage = botConfiguration.defaultLanguage;
 
         this.dataManager = new UserDataManager(this);
         this.languageManager = new LanguageManager(this);

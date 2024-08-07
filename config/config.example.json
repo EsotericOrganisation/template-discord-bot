@@ -3,6 +3,7 @@
         {
             "discordBotToken": "abc123",
             "discordBotClientID": "21431414",
+            "defaultLanguage": "English (United Kingdom)",
             "adminDiscordUserIDs": [
                 "987654321"
             ]

@@ -1,9 +1,6 @@
-import { Language } from "../../enums/language/Language.js";
-import { LanguageInformation } from "../../types/language/LanguageInformation.js";
 import { readdirSync, readFileSync } from "fs";
 import { languagesFolderPath, pathSeparator } from "../../constants.js";
 import { MessageMap } from "../../types/language/MessageMap.js";
-import { LanguageManifest } from "../../types/language/LanguageManifest.js";
 import { Message } from "../../enums/language/Message.js";
 import { DiscordUserID } from "../../types/user/DiscordUserID.js";
 import { Bot } from "../bot/Bot.js";
@@ -14,7 +11,7 @@ export class LanguageManager {
 
     private readonly bot: Bot;
 
-    private readonly languageDataMap: Map<Language, LanguageInformation> = new Map();
+    private readonly languageDataMap: Map<string, MessageMap> = new Map();
 
     constructor(bot: Bot) {
         this.bot = bot;
@@ -23,25 +20,20 @@ export class LanguageManager {
     }
 
     loadLanguages() {
-        const languageFolderNames = readdirSync(languagesFolderPath);
+        const languageFileNames = readdirSync(languagesFolderPath);
 
-        for (const languageFolderName of languageFolderNames) {
-            const folderPath = languagesFolderPath + pathSeparator + languageFolderName;
+        for (const languageFileName of languageFileNames) {
+            const languageFilePath = languagesFolderPath + pathSeparator + languageFileName;
+            const languageFileContents = readFileSync(languageFilePath).toString();
+            const languageMessageData = JSON.parse(languageFileContents) as MessageMap;
 
-            const manifestFile = readFileSync(folderPath + pathSeparator + "manifest.json").toString();
-            const messagesFile = readFileSync(folderPath + pathSeparator + "messages.json").toString();
-
-            const languageData = JSON.parse(manifestFile) as LanguageManifest;
-            const messagesData = JSON.parse(messagesFile) as MessageMap;
-
-            this.languageDataMap.set(languageFolderName as Language, { languageName: languageData.languageName, messages: messagesData })
+            this.languageDataMap.set(languageFileName.split(".")[0], languageMessageData)
         }
     }
 
-    getMessageByLanguage(message: Message, language: Language, ...parameters: any[]) {
-        const languageData = this.languageDataMap.get(language) ?? this.languageDataMap.get(Language.DefaultLanguage);
-
-        let messageString = languageData.messages[message];
+    getMessageByLanguage(message: Message, language: string, ...parameters: any[]) {
+        const languageData = this.languageDataMap.get(language) ?? this.languageDataMap.get(this.bot.defaultLanguage);
+        let messageString = languageData[message];
 
         for (let i = 0; i < parameters.length; i++) {
             messageString = messageString.replaceAll("{" + i + "}", parameters[i].toString());
@@ -51,7 +43,7 @@ export class LanguageManager {
     }
 
     getMessageByUserData(message: Message, userData: UserData, ...parameters: any[]) {
-        return this.getMessageByLanguage(message, userData?.userConfiguartion?.language ?? Language.DefaultLanguage, ...parameters);
+        return this.getMessageByLanguage(message, userData?.userConfiguartion?.language ?? this.bot.defaultLanguage, ...parameters);
     }
 
     getMessageByDiscordUserID(message: Message, userID: DiscordUserID, ...parameters: any[]) {
