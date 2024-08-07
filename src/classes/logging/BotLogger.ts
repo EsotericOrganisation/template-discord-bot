@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync, renameSync } from "fs";
-import { logsFolderPath, pathSeparator } from "../../constants.js";
+import { logFileExtension, logsFolderPath, pathSeparator } from "../../constants.js";
 import winston, { Logger, transports } from "winston";
 
 export class BotLogger {
@@ -20,13 +20,13 @@ export class BotLogger {
         const dateString = currentDate.toISOString().split("T")[0];
 
         let logNumber = 1;
-        for (; existsSync(logFilesFolderPath + pathSeparator + dateString + "-" + logNumber + ".log") || (logNumber === 1 && existsSync(logFilesFolderPath + pathSeparator + dateString + ".log")); logNumber++) { console.log(logFilesFolderPath + pathSeparator + dateString + "-" + logNumber) }
+        for (; existsSync(logFilesFolderPath + pathSeparator + dateString + "-" + logNumber + logFileExtension) || (logNumber === 1 && existsSync(logFilesFolderPath + pathSeparator + dateString + logFileExtension)); logNumber++) { console.log(logFilesFolderPath + pathSeparator + dateString + "-" + logNumber) }
 
         if (logNumber === 2) {
-            renameSync(logFilesFolderPath + pathSeparator + dateString + ".log", logFilesFolderPath + pathSeparator + dateString + "-1" + ".log");
+            renameSync(logFilesFolderPath + pathSeparator + dateString + logFileExtension, logFilesFolderPath + pathSeparator + dateString + "-1" + logFileExtension);
         }
 
-        const logFilePath = logFilesFolderPath + pathSeparator + dateString + (logNumber === 1 ? "" : "-" + logNumber) + ".log";
+        const logFilePath = logFilesFolderPath + pathSeparator + dateString + (logNumber === 1 ? "" : "-" + logNumber) + logFileExtension;
 
         this.logger = winston.createLogger(
             {

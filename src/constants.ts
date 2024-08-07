@@ -10,11 +10,16 @@ export const restVersion = "10";
 // Bot constants:
 export const commandPrefix = "/";
 
+// File extension constants:
+export const configFileExtension = ".json";
+export const dataFileExtensions = ".json";
+export const logFileExtension = ".log";
+
 // File and folder names and paths:
 export const configFolderName = "config";
 export const configFolderPath = configFolderName;
 
-export const configFileName = "config.json";
+export const configFileName = "config" + configFileExtension;
 export const configFilePath = configFolderName + pathSeparator + configFileName;
 
 export const dataFolderName = "data";

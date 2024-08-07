@@ -1,7 +1,7 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { DiscordUserID } from "../../../types/user/DiscordUserID.js";
 import { UserData } from "../../../types/user/UserData.js";
-import { botDataFolderPath, pathSeparator, userDataFolderName } from "../../../constants.js";
+import { botDataFolderPath, dataFileExtensions as dataFilesExtension, pathSeparator, userDataFolderName } from "../../../constants.js";
 import { Bot } from "../../bot/Bot.js";
 
 export class UserDataManager {
@@ -45,7 +45,7 @@ export class UserDataManager {
         this.createDataFolders();
 
         for (const userDataValue of this.userData.values()) {
-            writeFileSync(this.userDataFolderPath + pathSeparator + userDataValue.discordUserID + ".json", JSON.stringify(userDataValue, null, 4));
+            writeFileSync(this.userDataFolderPath + pathSeparator + userDataValue.discordUserID + dataFilesExtension, JSON.stringify(userDataValue, null, 4));
         }
     }
 
