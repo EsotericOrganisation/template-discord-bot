@@ -10,7 +10,7 @@ export default {
     async execute(interaction, bot) {
         const isPermanentStop = interaction.options.getBoolean("permanently") ?? false;
 
-        await interaction.reply({content: bot.languageManager.getMessageByDiscordUser(Message.StoppingBot, interaction.user), ephemeral: true});
+        await interaction.reply({content: bot.languageManager.getMessageByDiscordUser("stoppingBot", interaction.user), ephemeral: true});
 
         await bot.stop(isPermanentStop);
     },

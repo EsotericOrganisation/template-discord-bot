@@ -1,20 +1,19 @@
-export enum Message {
-    PingCommandName = "pingCommandName",
-    Ping = "ping",
-    PingResult = "pingResult",
+export type Message =
+    | "pingCommandName"
+    | "ping"
+    | "pingResult"
 
-    ReloadBotCommandName = "reloadBotCommandName",
-    ReloadedBotSuccessfully = "reloadedBotSuccessfully",
-    ReloadAllCommandName = "reloadAllCommandName",
-    ReloadedAllBotsSuccessfully = "reloadedAllBotsSuccessfully",
+    | "reloadBotCommandName"
+    | "reloadedBotSuccessfully"
+    | "reloadAllCommandName"
+    | "reloadedAllBotsSuccessfully"
 
-    ExecuteCommandName = "executeCommandName",
-    ExecuteCode = "executeCode",
-    CodeToExecute = "codeToExecute",
-    ExecutedCode = "executedCode",
+    | "executeCommandName"
+    | "executeCode"
+    | "codeToExecute"
+    | "executedCode"
 
-    StopBotCommandName = "stopBotCommandName",
-    StoppingBot = "stoppingBot",
-    StopAllCommandName = "stopAllCommandName",
-    StoppingAllBots = "stoppingAllBots"
-}
+    | "stopBotCommandName"
+    | "stoppingBot"
+    | "stopAllCommandName"
+    | "stoppingAllBots"

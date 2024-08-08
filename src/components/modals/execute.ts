@@ -8,6 +8,6 @@ export default {
 
         eval(codeToExecute);
 
-        await interaction.reply({ content: bot.languageManager.getMessageByDiscordUser(Message.ExecutedCode, interaction.user), ephemeral: true });
+        await interaction.reply({ content: bot.languageManager.getMessageByDiscordUser("executedCode", interaction.user), ephemeral: true });
     },
 } as Modal

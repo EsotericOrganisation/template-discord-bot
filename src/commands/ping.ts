@@ -20,8 +20,8 @@ export default {
         interaction.editReply({
             embeds: [
                 new EmbedBuilder()
-                    .setTitle(languageManager.getMessageByDiscordUser(Message.Ping, interaction.user))
-                    .setDescription(languageManager.getMessageByDiscordUser(Message.PingResult, interaction.user, interaction.createdTimestamp, message.createdTimestamp, messageCreationLatency, wsPing, totalLatency))
+                    .setTitle(languageManager.getMessageByDiscordUser("ping", interaction.user))
+                    .setDescription(languageManager.getMessageByDiscordUser("pingResult", interaction.user, interaction.createdTimestamp, message.createdTimestamp, messageCreationLatency, wsPing, totalLatency))
             ],
         });
     },

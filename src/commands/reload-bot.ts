@@ -12,6 +12,6 @@ export default {
 
         await bot.reload();
 
-        await interaction.editReply({ content: bot.languageManager.getMessageByDiscordUser(Message.ReloadedBotSuccessfully, interaction.user) })
+        await interaction.editReply({ content: bot.languageManager.getMessageByDiscordUser("reloadedBotSuccessfully", interaction.user) })
     },
 } as Command;

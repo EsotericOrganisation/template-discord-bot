@@ -14,6 +14,6 @@ export default {
         const botManager = bot.botManager;
         await botManager.reload(configFilePath);
 
-        await interaction.editReply({ content: bot.languageManager.getMessageByDiscordUser(Message.ReloadedAllBotsSuccessfully, interaction.user) })
+        await interaction.editReply({ content: bot.languageManager.getMessageByDiscordUser("reloadedAllBotsSuccessfully", interaction.user) })
     },
 } as Command;
