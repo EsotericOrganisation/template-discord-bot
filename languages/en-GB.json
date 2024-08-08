@@ -1,14 +1,20 @@
 {
+    "pingCommandName": "ping",
     "ping": "Ping",
     "pingResult": "> Interaction creation timestamp: `{0}ms`\n> Message creation timestamp: `{1}ms`\n> \n> Message creation latency = `{1}ms - {0}ms` = `{2}ms`\n\n> Bot WS ping: `{3}ms`\n\nTotal latency = `{2}ms + {3}ms` = `{4}ms`",
 
+    "reloadBotCommandName": "reload-bot",
     "reloadedBotSuccessfully": "Reloaded the bot successfully!",
+    "reloadAllCommandName": "reload-all",
     "reloadedAllBotsSuccessfully": "Reloaded all bots successfully!",
 
+    "executeCommandName": "execute",
     "executeCode": "Execute code",
     "codeToExecute": "Code to execute",
     "executedCode": "Successfully executed the provided code!",
 
+    "stopBotCommandName": "stop-bot",
     "stoppingBot": "Stopping bot...",
+    "stopAllCommandName": "stop-all",
     "stoppingAllBots": "Stopping all bots..."
 }

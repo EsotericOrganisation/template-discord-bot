@@ -19,6 +19,10 @@ export class LanguageManager {
         this.loadLanguages();
     }
 
+    public get languages() {
+        return this.languageDataMap.keys();
+    }
+
     loadLanguages() {
         const languageFileNames = readdirSync(languagesFolderPath);
 

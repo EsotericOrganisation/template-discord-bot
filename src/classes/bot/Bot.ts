@@ -1,4 +1,4 @@
-import { Client, Collection, IntentsBitField, REST, RESTPostAPIApplicationCommandsJSONBody, Routes, Status } from "discord.js";
+import { Client, Collection, IntentsBitField, LocaleString, REST, RESTPostAPIApplicationCommandsJSONBody, Routes } from "discord.js";
 import { readdirSync } from "fs";
 import { Command } from "../../types/commands/Command.js";
 import { Button } from "../../types/components/Button.js";
@@ -14,6 +14,8 @@ import { DiscordUserID } from "../../types/user/DiscordUserID.js";
 import { BotConfiguration } from "../../types/bot/BotConfiguration.js";
 import { BotManager } from "./BotManager.js";
 import { BotLogger } from "../logging/BotLogger.js";
+import { Message } from "../../enums/language/Message.js";
+import { capitaliseFirstLetter } from "../../utility/capitaliseFirstLetter.js";
 
 export class Bot extends Client {
 
@@ -133,6 +135,15 @@ export class Bot extends Client {
             const command = (await import(ascendDirectoryString + pathSeparator + ascendDirectoryString + pathSeparator + commandsFolderName + pathSeparator + file)).default as Command;
 
             this.logger.log("Handling command " + commandPrefix + command.data.name + ".");
+
+            const commandFileName = file.split(".")[0];
+            const commandNameMessage = (commandFileName.split("-").map((element, index) => (index > 0 ? capitaliseFirstLetter(element) : element)).join("") + "CommandName") as Message;
+
+            const languages = this.languageManager.languages;
+            for (const language of languages) {
+                const message = this.languageManager.getMessageByLanguage(commandNameMessage, language);
+                command.data.setNameLocalization(language as LocaleString, message);
+            }
 
             this.commandArray.push(command.data.toJSON());
             this.commands.set(command.data.name, command);
