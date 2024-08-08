@@ -13,10 +13,13 @@ import { DiscordUserID } from "../../types/user/DiscordUserID.js";
 
 import { BotConfiguration } from "../../types/bot/BotConfiguration.js";
 import { BotManager } from "./BotManager.js";
+import { BotLogger } from "../logging/BotLogger.js";
 
 export class Bot extends Client {
 
     public readonly botManager: BotManager;
+
+    public readonly logger: BotLogger;
 
     public isRunning: boolean = false;
 
@@ -42,6 +45,9 @@ export class Bot extends Client {
 
         this.botToken = botConfiguration.discordBotToken;
         this.discordBotClientID = botConfiguration.discordBotClientID;
+
+        this.logger = new BotLogger(this.discordBotClientID, this.discordBotClientID);
+
         this.adminDiscordUserIDs = botConfiguration.adminDiscordUserIDs;
         this.defaultLanguage = botConfiguration.defaultLanguage;
 
@@ -60,7 +66,7 @@ export class Bot extends Client {
     }
 
     async stop(permanently: boolean) {
-        console.log("Stopping bot " + this.user.displayName + (permanently ? " permanently" : "") + ".");
+        this.logger.log("Stopping bot " + this.user.displayName + (permanently ? " permanently" : "") + ".");
 
         if (permanently) {
             this.botManager.removeBotFromMap(this);
@@ -126,7 +132,7 @@ export class Bot extends Client {
         for (const file of commandFiles) {
             const command = (await import(ascendDirectoryString + pathSeparator + ascendDirectoryString + pathSeparator + commandsFolderName + pathSeparator + file)).default as Command;
 
-            console.log("Handling command " + commandPrefix + command.data.name + ".");
+            this.logger.log("Handling command " + commandPrefix + command.data.name + ".");
 
             this.commandArray.push(command.data.toJSON());
             this.commands.set(command.data.name, command);
@@ -136,7 +142,7 @@ export class Bot extends Client {
             .setToken(this.botToken)
             .put(Routes.applicationCommands(this.discordBotClientID), { body: this.commandArray, });
 
-        console.log("Successfully handled " + this.commandArray.length + " command(s).");
+        this.logger.log("Successfully handled " + this.commandArray.length + " command(s).");
     };
 
     async handleComponents() {
@@ -181,7 +187,7 @@ export class Bot extends Client {
     }
 
     async reload() {
-        console.log("Reloading " + this.user?.displayName + ".");
+        this.logger.log("Reloading " + this.user?.displayName + ".");
 
         if (!this.isRunning) {
             this.login(this.botToken);

@@ -1,9 +1,12 @@
 import { BotConfiguration } from "../../types/bot/BotConfiguration.js";
 import { Configuration } from "../../types/bot/Configuration.js";
 import { DiscordUserID } from "../../types/user/DiscordUserID.js";
+import { BotLogger } from "../logging/BotLogger.js";
 import { Bot } from "./Bot.js";
 
 export class BotManager {
+
+    private logger: BotLogger = new BotLogger("bot-manager", "Bot Manager");
 
     private botConfig: Configuration;
     public readonly bots: Map<DiscordUserID, Bot> = new Map();
