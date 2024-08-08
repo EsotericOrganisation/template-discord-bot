@@ -34,7 +34,7 @@ export class BotLogger {
             {
                 transports: [
                     new transports.Console({
-                        format: winston.format.simple(),
+                        format: winston.format.cli(),
                     }),
                     new transports.File({
                         filename: logFilePath, format: winston.format.simple()
