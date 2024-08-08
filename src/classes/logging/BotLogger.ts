@@ -20,7 +20,7 @@ export class BotLogger {
         const dateString = currentDate.toISOString().split("T")[0];
 
         let logNumber = 1;
-        for (; existsSync(logFilesFolderPath + pathSeparator + dateString + "-" + logNumber + logFileExtension) || (logNumber === 1 && existsSync(logFilesFolderPath + pathSeparator + dateString + logFileExtension)); logNumber++) { console.log(logFilesFolderPath + pathSeparator + dateString + "-" + logNumber) }
+        for (; existsSync(logFilesFolderPath + pathSeparator + dateString + "-" + logNumber + logFileExtension) || (logNumber === 1 && existsSync(logFilesFolderPath + pathSeparator + dateString + logFileExtension)); logNumber++) { }
 
         if (logNumber === 2) {
             renameSync(logFilesFolderPath + pathSeparator + dateString + logFileExtension, logFilesFolderPath + pathSeparator + dateString + "-1" + logFileExtension);
