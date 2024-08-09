@@ -138,11 +138,14 @@ export class Bot extends Client {
 
             const commandFileName = file.split(".")[0];
             const commandNameMessage = (commandFileName.split("-").map((element, index) => (index > 0 ? capitaliseFirstLetter(element) : element)).join("") + "CommandName") as Message;
+            const commandDescriptionMessage = (commandFileName.split("-").map((element, index) => (index > 0 ? capitaliseFirstLetter(element) : element)).join("") + "CommandDescription") as Message;
 
             const languages = this.languageManager.languages;
             for (const language of languages) {
                 const message = this.languageManager.getMessageByLanguage(commandNameMessage, language);
+                const commandDescriptionString = this.languageManager.getMessageByLanguage(commandDescriptionMessage, language);
                 command.data.setNameLocalization(language as LocaleString, message);
+                command.data.setDescriptionLocalization(language as LocaleString, commandDescriptionString);
             }
 
             this.commandArray.push(command.data.toJSON());

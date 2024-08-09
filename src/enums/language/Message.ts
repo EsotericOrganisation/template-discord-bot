@@ -1,19 +1,25 @@
 export type Message =
     | "pingCommandName"
+    | "pingCommandDescription"
     | "ping"
     | "pingResult"
 
     | "reloadBotCommandName"
+    | "reloadBotCommandDescription"
     | "reloadedBotSuccessfully"
+    | "reloadAllCommandDescription"
     | "reloadAllCommandName"
     | "reloadedAllBotsSuccessfully"
 
     | "executeCommandName"
+    | "executeCommandDescription"
     | "executeCode"
     | "codeToExecute"
     | "executedCode"
 
     | "stopBotCommandName"
+    | "stopBotCommandDescription"
     | "stoppingBot"
     | "stopAllCommandName"
+    | "stopAllCommandDescription"
     | "stoppingAllBots"

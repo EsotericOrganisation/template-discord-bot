@@ -1,20 +1,26 @@
 {
     "pingCommandName": "ping",
+    "pingCommandDescription": "Pings the bot. Returns information about the bot's latency.",
     "ping": "Ping",
     "pingResult": "> Interaction creation timestamp: `{0}ms`\n> Message creation timestamp: `{1}ms`\n> \n> Message creation latency = `{1}ms - {0}ms` = `{2}ms`\n\n> Bot WS ping: `{3}ms`\n\nTotal latency = `{2}ms + {3}ms` = `{4}ms`",
 
     "reloadBotCommandName": "reload-bot",
+    "reloadBotCommandDescription": "Reloads the bot settings, data and language information.",
     "reloadedBotSuccessfully": "Reloaded the bot successfully!",
     "reloadAllCommandName": "reload-all",
+    "reloadAllCommandDescription": "Reloads the bot manager as well as all running bots.",
     "reloadedAllBotsSuccessfully": "Reloaded all bots successfully!",
 
     "executeCommandName": "execute",
+    "executeCommandDescription": "Executes code provided through a modal.",
     "executeCode": "Execute code",
     "codeToExecute": "Code to execute",
     "executedCode": "Successfully executed the provided code!",
 
     "stopBotCommandName": "stop-bot",
+    "stopBotCommandDescription": "Stops the current bot from running.",
     "stoppingBot": "Stopping bot...",
     "stopAllCommandName": "stop-all",
+    "stopAllCommandDescription": "Stops all bots currently running.",
     "stoppingAllBots": "Stopping all bots..."
 }
