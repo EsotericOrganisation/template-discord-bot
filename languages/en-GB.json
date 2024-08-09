@@ -1,30 +1,32 @@
 {
-    "ping-command-name": "ping",
-    "ping-command-description": "Pings the bot. Returns information about the bot's latency.",
-    "ping": "Ping",
-    "ping-result": "> Interaction creation timestamp: `{0}ms`\n> Message creation timestamp: `{1}ms`\n> \n> Message creation latency = `{1}ms - {0}ms` = `{2}ms`\n\n> Bot WS ping: `{3}ms`\n\nTotal latency = `{2}ms + {3}ms` = `{4}ms`",
-
-    "reload-bot-command-name": "reload-bot",
-    "reload-bot-command-description": "Reloads the bot settings, data and language information.",
-    "reloaded-bot-successfully": "Reloaded the bot successfully!",
-    "reload-all-command-name": "reload-all",
-    "reload-all-command-description": "Reloads the bot manager as well as all running bots.",
-    "reloaded-all-bots-successfully": "Reloaded all bots successfully!",
-
     "execute-command-name": "execute",
     "execute-command-description": "Executes code provided through a modal.",
     "execute-code": "Execute code",
     "code-to-execute": "Code to execute",
     "executed-code": "Successfully executed the provided code!",
 
-    "stop-bot-command-name": "stop-bot",
-    "stop-bot-command-description": "Stops the current bot from running.",
-    "stop-bot-command-permanently-option-name": "permanently",
-    "stop-bot-command-permanently-option-description": "Whether the bot should be stopped permanently.",
-    "stopping-bot": "Stopping bot...",
+    "ping-command-name": "ping",
+    "ping-command-description": "Pings the bot. Returns information about the bot's latency.",
+    "ping": "Ping",
+    "ping-result": "> Interaction creation timestamp: `{0}ms`\n> Message creation timestamp: `{1}ms`\n> \n> Message creation latency = `{1}ms - {0}ms` = `{2}ms`\n\n> Bot WS ping: `{3}ms`\n\nTotal latency = `{2}ms + {3}ms` = `{4}ms`",
+
+    "reload-all-command-name": "reload-all",
+    "reload-all-command-description": "Reloads the bot manager as well as all running bots.",
+    "reloaded-all-bots-successfully": "Reloaded all bots successfully!",
+
+    "reload-bot-command-name": "reload-bot",
+    "reload-bot-command-description": "Reloads the bot settings, data and language information.",
+    "reloaded-bot-successfully": "Reloaded the bot successfully!",
+
     "stop-all-command-name": "stop-all",
     "stop-all-command-description": "Stops all bots currently running.",
     "stop-all-command-permanently-option-name": "permanently",
     "stop-all-command-permanently-option-description": "Whether the bots should be stopped permanently.",
-    "stopping-all-bots": "Stopping all bots..."
+    "stopping-all-bots": "Stopping all bots...",
+
+    "stop-bot-command-name": "stop-bot",
+    "stop-bot-command-description": "Stops the current bot from running.",
+    "stop-bot-command-permanently-option-name": "permanently",
+    "stop-bot-command-permanently-option-description": "Whether the bot should be stopped permanently.",
+    "stopping-bot": "Stopping bot..."
 }
