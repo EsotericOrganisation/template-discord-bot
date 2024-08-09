@@ -1,4 +1,4 @@
-import { Client, Collection, IntentsBitField, LocaleString, REST, RESTPostAPIApplicationCommandsJSONBody, Routes } from "discord.js";
+import { Client, Collection, IntentsBitField, LocaleString, LocalizationMap, REST, RESTPostAPIApplicationCommandsJSONBody, Routes } from "discord.js";
 import { readdirSync } from "fs";
 import { Command } from "../../types/commands/Command.js";
 import { Button } from "../../types/components/Button.js";
@@ -215,5 +215,11 @@ export class Bot extends Client {
 
         dataManager.save();
         dataManager.load();
+    }
+
+    private addLocalizations(localizationMap: LocalizationMap, messageKey: Message) {
+        for (const language of this.languageManager.languages) {
+            localizationMap[language as LocaleString] = this.languageManager.getMessageByLanguage(messageKey, language);
+        }
     }
 }
