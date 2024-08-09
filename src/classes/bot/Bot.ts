@@ -137,8 +137,8 @@ export class Bot extends Client {
             this.logger.log("Handling command " + commandPrefix + command.data.name + ".");
 
             const commandFileName = file.split(".")[0];
-            const commandNameMessage = (commandFileName.split("-").map((element, index) => (index > 0 ? capitaliseFirstLetter(element) : element)).join("") + "CommandName") as Message;
-            const commandDescriptionMessage = (commandFileName.split("-").map((element, index) => (index > 0 ? capitaliseFirstLetter(element) : element)).join("") + "CommandDescription") as Message;
+            const commandNameMessage = (commandFileName + "-command-name") as Message;
+            const commandDescriptionMessage = (commandFileName + "-command-description") as Message;
 
             const languages = this.languageManager.languages;
             for (const language of languages) {

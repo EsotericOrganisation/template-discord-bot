@@ -21,7 +21,7 @@ export default {
             embeds: [
                 new EmbedBuilder()
                     .setTitle(languageManager.getMessageByDiscordUser("ping", interaction.user))
-                    .setDescription(languageManager.getMessageByDiscordUser("pingResult", interaction.user, interaction.createdTimestamp, message.createdTimestamp, messageCreationLatency, wsPing, totalLatency))
+                    .setDescription(languageManager.getMessageByDiscordUser("ping-result", interaction.user, interaction.createdTimestamp, message.createdTimestamp, messageCreationLatency, wsPing, totalLatency))
             ],
         });
     },

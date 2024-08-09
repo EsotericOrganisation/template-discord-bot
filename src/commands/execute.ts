@@ -12,13 +12,13 @@ export default {
 
         await interaction.showModal(
             new ModalBuilder()
-                .setTitle(languageManager.getMessageByDiscordUser("executeCode", interaction.user))
+                .setTitle(languageManager.getMessageByDiscordUser("execute-code", interaction.user))
                 .setCustomId("execute")
                 .setComponents(
                     new ActionRowBuilder<TextInputBuilder>()
                         .addComponents(
                             new TextInputBuilder()
-                                .setLabel(languageManager.getMessageByDiscordUser("codeToExecute", interaction.user))
+                                .setLabel(languageManager.getMessageByDiscordUser("code-to-execute", interaction.user))
                                 .setCustomId("codeToExecute")
                                 .setStyle(TextInputStyle.Paragraph)
                                 .setRequired(true)
