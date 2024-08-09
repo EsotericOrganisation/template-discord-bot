@@ -1,6 +1,5 @@
 import { SlashCommandBuilder } from "discord.js";
 import { Command } from "../types/commands/Command.js";
-import { Message } from "../enums/language/Message.js";
 
 export default {
     data: new SlashCommandBuilder()

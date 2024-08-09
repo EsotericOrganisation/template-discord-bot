@@ -1,4 +1,3 @@
-import { Message } from "../../enums/language/Message.js";
 import { Modal } from "../../types/components/Modal.js";
 
 export default {

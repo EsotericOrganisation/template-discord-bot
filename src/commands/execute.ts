@@ -1,6 +1,5 @@
 import { ActionRowBuilder, ModalBuilder, SlashCommandBuilder, TextInputBuilder, TextInputStyle } from "discord.js";
 import { Command } from "../types/commands/Command.js";
-import { Message } from "../enums/language/Message.js";
 
 export default {
     data: new SlashCommandBuilder()
