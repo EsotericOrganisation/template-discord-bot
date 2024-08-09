@@ -6,6 +6,7 @@ export default {
         .setName("stop-all")
         .setDescription("Stops all bots currently running.")
         .addBooleanOption((option) => option.setName("permanently").setDescription("Whether the bots should be stopped permanently.")),
+    isBotAdminOnly: true,
     async execute(interaction, bot) {
         const isPermanentStop = interaction.options.getBoolean("permanently") ?? true;
 
