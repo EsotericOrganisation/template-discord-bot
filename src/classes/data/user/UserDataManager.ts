@@ -14,14 +14,10 @@ export class UserDataManager {
     constructor(bot: Bot) {
         this.botDataFolderPath = botDataFolderPath + pathSeparator + bot.discordBotClientID;
         this.userDataFolderPath = this.botDataFolderPath + pathSeparator + userDataFolderName;
-
-        this.createDataFolders();
     }
 
     createDataFolders() {
-        if (!existsSync(this.userDataFolderPath)) {
-            mkdirSync(this.userDataFolderPath, {recursive: true});
-        }
+        mkdirSync(this.userDataFolderPath, {recursive: true});
     }
 
     removeDataFolders() {
@@ -29,6 +25,10 @@ export class UserDataManager {
     }
 
     load() {
+        if (!existsSync(this.botDataFolderPath)) {
+            return;
+        }
+
         const userFileNames = readdirSync(this.userDataFolderPath);
 
         for (const userFileName of userFileNames) {
@@ -41,7 +41,14 @@ export class UserDataManager {
     }
 
     save() {
-        this.removeDataFolders();
+        if (existsSync(this.botDataFolderPath)) {
+            this.removeDataFolders();
+        }
+
+        if (this.userData.size === 0) {
+            return;
+        }
+
         this.createDataFolders();
 
         for (const userDataValue of this.userData.values()) {
