@@ -19,7 +19,7 @@ export default {
                         .addComponents(
                             new TextInputBuilder()
                                 .setLabel(languageManager.getMessageByDiscordUser("code-to-execute", interaction.user))
-                                .setCustomId("codeToExecute")
+                                .setCustomId("code-to-execute")
                                 .setStyle(TextInputStyle.Paragraph)
                                 .setRequired(true)
                         )

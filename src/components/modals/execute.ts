@@ -4,7 +4,7 @@ import { Modal } from "../../types/components/Modal.js";
 export default {
     id: "execute",
     async execute(interaction, bot) {
-        const codeToExecute = interaction.fields.getTextInputValue("codeToExecute");
+        const codeToExecute = interaction.fields.getTextInputValue("code-to-execute");
 
         eval(codeToExecute);
 
