@@ -3,6 +3,10 @@
   "displayName": "Slime Bot",
   "description": "A general purpose Discord bot.",
   "version": "1.0.0",
+  "author": {
+    "name": "Slqmy",
+    "url": "https://github.com/Slqmy"
+  },
   "homepage": "https://github.com/Slqmy/slime-bot",
   "repository": {
     "type": "git",
@@ -19,7 +23,6 @@
     "discord",
     "bot"
   ],
-  "author": "Slqmy",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^22.2.0",
