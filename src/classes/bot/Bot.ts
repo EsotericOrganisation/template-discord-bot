@@ -15,7 +15,6 @@ import { BotConfiguration } from "../../types/bot/BotConfiguration.js";
 import { BotManager } from "./BotManager.js";
 import { BotLogger } from "../logging/BotLogger.js";
 import { Message } from "../../enums/language/Message.js";
-import { capitaliseFirstLetter } from "../../utility/capitaliseFirstLetter.js";
 
 export class Bot extends Client {
 
