@@ -19,7 +19,11 @@ export type Message =
 
     | "stop-bot-command-name"
     | "stop-bot-command-description"
+    | "stop-bot-command-permanently-option-name"
+    | "stop-bot-command-permanently-option-description"
     | "stopping-bot"
     | "stop-all-command-name"
     | "stop-all-command-description"
+    | "stop-all-command-permanently-option-name"
+    | "stop-all-command-permanently-option-description"
     | "stopping-all-bots"

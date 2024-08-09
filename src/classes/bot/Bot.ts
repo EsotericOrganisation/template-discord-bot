@@ -1,4 +1,4 @@
-import { Client, Collection, IntentsBitField, LocaleString, LocalizationMap, REST, RESTPostAPIApplicationCommandsJSONBody, Routes } from "discord.js";
+import { APIApplicationCommandOption, ApplicationCommandOptionData, ApplicationCommandOptionType, ApplicationCommandSubCommandData, ApplicationCommandSubGroupData, Client, Collection, IntentsBitField, LocaleString, LocalizationMap, REST, RESTPostAPIApplicationCommandsJSONBody, Routes } from "discord.js";
 import { readdirSync } from "fs";
 import { Command } from "../../types/commands/Command.js";
 import { Button } from "../../types/components/Button.js";
@@ -136,19 +136,7 @@ export class Bot extends Client {
 
             this.logger.log("Handling command " + commandPrefix + command.data.name + ".");
 
-            const commandFileName = file.split(".")[0];
-            const commandNameMessage = (commandFileName + "-command-name") as Message;
-            const commandDescriptionMessage = (commandFileName + "-command-description") as Message;
-
-            const languages = this.languageManager.languages;
-            for (const language of languages) {
-                const message = this.languageManager.getMessageByLanguage(commandNameMessage, language);
-                const commandDescriptionString = this.languageManager.getMessageByLanguage(commandDescriptionMessage, language);
-                command.data.setNameLocalization(language as LocaleString, message);
-                command.data.setDescriptionLocalization(language as LocaleString, commandDescriptionString);
-            }
-
-            this.commandArray.push(command.data.toJSON());
+            this.commandArray.push(this.addCommandLocalizations(command));
             this.commands.set(command.data.name, command);
         }
 
@@ -215,6 +203,50 @@ export class Bot extends Client {
 
         dataManager.save();
         dataManager.load();
+    }
+
+    private addCommandLocalizations(command: Command): RESTPostAPIApplicationCommandsJSONBody {
+        const jsonData = command.data.toJSON();
+
+        const baseMessageKey = (command.data.name + "-command");
+
+        this.addNameAndDescriptionLocalizations(jsonData, baseMessageKey);
+        this.addCommandOptionLocalizations(jsonData, baseMessageKey);
+
+        return jsonData;
+    }
+
+    private addCommandOptionLocalizations(objectWithOptions: {
+        options?: readonly (APIApplicationCommandOption | Exclude<
+            ApplicationCommandOptionData,
+            ApplicationCommandSubGroupData | ApplicationCommandSubCommandData
+        >)[]
+    } & Record<string, any>, baseMessageKey: string) {
+        if (!objectWithOptions.options) {
+            return;
+        }
+
+        for (const option of objectWithOptions.options) {
+            const newBaseMessageKey = (baseMessageKey + "-" + option.name + "-option");
+            if (option.type === ApplicationCommandOptionType.Subcommand) {
+                this.addCommandOptionLocalizations(option as ApplicationCommandSubCommandData, newBaseMessageKey);
+            }
+
+            this.addNameAndDescriptionLocalizations(option, newBaseMessageKey);
+        }
+    }
+
+    private addNameAndDescriptionLocalizations(object: { name_localizations?: LocalizationMap, description_localizations?: LocalizationMap } & Record<string, any>, baseMessageKey: string) {
+        if (!object.name_localizations) {
+            object.name_localizations = {};
+        }
+
+        if (!object.description_localizations) {
+            object.description_localizations = {};
+        }
+
+        this.addLocalizations(object.name_localizations, (baseMessageKey + "-name") as Message);
+        this.addLocalizations(object.description_localizations, (baseMessageKey + "-description") as Message);
     }
 
     private addLocalizations(localizationMap: LocalizationMap, messageKey: Message) {
