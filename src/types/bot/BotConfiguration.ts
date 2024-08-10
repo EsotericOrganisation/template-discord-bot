@@ -1,8 +1,8 @@
 import { DiscordUserID } from "../user/DiscordUserID.js";
 
 export type BotConfiguration = {
-    discordBotToken: string;
-    discordBotClientID: DiscordUserID;
-    adminDiscordUserIDs?: DiscordUserID[];
-    defaultLanguage: string;
+    readonly discordBotToken: string;
+    readonly discordBotClientID: DiscordUserID;
+    readonly adminDiscordUserIDs?: DiscordUserID[];
+    readonly defaultLanguage: string;
 }
