@@ -54,7 +54,25 @@ export class BotLogger {
         )
     }
 
-    public log(message: string) {
-        this.logger.log({ level: "info", message});
+    public log(object: any) {
+        this.logger.log({ level: "info", message: this.processMessage(object)});
+    }
+
+    public warn(object: any) {
+        this.logger.log({ level: "warn", message: this.processMessage(object)});
+    }
+
+    public error(object: any) {
+        this.logger.log({ level: "error", message: this.processMessage(object)});
+    }
+
+    private processMessage(object: any) {
+        let message: string;
+
+        if (typeof object === "string") {
+            return object;
+        } else {
+            return JSON.stringify(object);
+        }
     }
 }
