@@ -53,15 +53,15 @@ export class BotLogger {
     }
 
     public log(object: any) {
-        this.logger.log({ level: "info", message: this.processMessage(object)});
+        this.logger.info({ message: this.processMessage(object)});
     }
 
     public warn(object: any) {
-        this.logger.log({ level: "warn", message: this.processMessage(object)});
+        this.logger.warn({ message: this.processMessage(object)});
     }
 
     public error(object: any) {
-        this.logger.log({ level: "error", message: this.processMessage(object)});
+        this.logger.error({ message: this.processMessage(object)});
     }
 
     private processMessage(object: any) {
