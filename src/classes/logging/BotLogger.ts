@@ -65,8 +65,6 @@ export class BotLogger {
     }
 
     private processMessage(object: any) {
-        let message: string;
-
         if (typeof object === "string") {
             return object;
         } else {
