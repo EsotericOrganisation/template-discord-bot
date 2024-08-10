@@ -6,7 +6,7 @@ import { Bot } from "./Bot.js";
 
 export class BotManager {
 
-    private logger: BotLogger = new BotLogger("bot-manager", "Bot Manager");
+    private logger: BotLogger = new BotLogger("bot-manager");
 
     private botConfig: Configuration;
     public readonly bots: Map<DiscordUserID, Bot> = new Map();

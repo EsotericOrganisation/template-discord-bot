@@ -9,11 +9,9 @@ export class BotLogger {
     private logFormat = format.printf(({level, message, timestamp}) => `[${timestamp.split("T")[1]}] [${level}] ${message}`);
 
     private readonly id: string;
-    private readonly name: string;
 
-    constructor(id: string, name: string) {
+    constructor(id: string) {
         this.id = id;
-        this.name = name;
 
         const logFilesFolderPath = logsFolderPath + pathSeparator + this.id;
         mkdirSync(logFilesFolderPath, { recursive: true })

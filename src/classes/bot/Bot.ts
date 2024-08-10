@@ -47,7 +47,7 @@ export class Bot extends Client {
         this.botToken = botConfiguration.discordBotToken;
         this.discordBotClientID = botConfiguration.discordBotClientID;
 
-        this.logger = new BotLogger(this.discordBotClientID, this.discordBotClientID);
+        this.logger = new BotLogger(this.discordBotClientID);
 
         this.adminDiscordUserIDs = botConfiguration.adminDiscordUserIDs;
         this.defaultLanguage = botConfiguration.defaultLanguage;
