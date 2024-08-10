@@ -1,10 +1,12 @@
 import { existsSync, mkdirSync, renameSync } from "fs";
 import { logFileExtension, logsFolderPath, pathSeparator } from "../../constants.js";
-import winston, { Logger, transports } from "winston";
+import winston, { format, Logger, transports } from "winston";
 
 export class BotLogger {
 
     private logger: Logger;
+
+    private logFormat = format.printf(({level, message, timestamp}) => `[${timestamp.split("T")[1]}] [${level}] ${message}`);
 
     private readonly id: string;
     private readonly name: string;
@@ -34,10 +36,18 @@ export class BotLogger {
             {
                 transports: [
                     new transports.Console({
-                        format: winston.format.cli(),
+                        format: format.combine(
+                            format.cli(),
+                            format.timestamp(),
+                            this.logFormat
+                        ),
                     }),
                     new transports.File({
-                        filename: logFilePath, format: winston.format.simple()
+                        filename: logFilePath,
+                        format: format.combine(
+                            format.timestamp(),
+                            this.logFormat
+                        )
                     })
                 ]
             }
